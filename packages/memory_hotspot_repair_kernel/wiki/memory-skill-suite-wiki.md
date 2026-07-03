@@ -239,9 +239,12 @@ profiler 更适合回答运行期问题，例如：
 
 与运行证据相关的产物包括：
 
-- `memory-optimizer-agent/runs/20260701-111400/summary.md`
-- `memory-optimizer-agent/runs/20260701-111400/round_1/prompt_bundle/README.md`
-- `memory-optimizer-agent/runs/20260701-111400/round_1/validation/validation.json`
+- `summary.md`
+- `prompt_bundle/README.md`
+- `validation/validation.json`
+
+这些路径表示运行产物的典型形态，而不是当前分享仓库中默认随包提供的固定目录。
+在当前 `alamo_skillhub` 仓库中，`runs/` 不作为分发内容保留；运行案例主要通过文档、图示和可移植配置来说明。
 
 ---
 
@@ -380,7 +383,8 @@ profiler 更适合回答运行期问题，例如：
 
 ### 6.3 Overlay 机制
 
-overlay 用于承载项目专有、重复出现且高价值的局部规则。它适合存放：
+overlay 指只对某个项目、某条 pipeline 或某类局部实现有意义的补充规则层。
+它用于承载项目专有、重复出现且高价值的局部规则。它适合存放：
 
 - repo-specific 热点模式
 - 行为契约
@@ -393,15 +397,15 @@ overlay 用于承载项目专有、重复出现且高价值的局部规则。它
 - 通用 DuckDB 规则
 - 通用 Arrow / NumPy / Polars 规则
 
-当前已有真实实例：
+当前仓库中提供了一个真实 example overlay：
 
 - `segment-causal-pipeline-v2`
 
 对应文件包括：
 
-- `memory-check/references/overlays/segment-causal-pipeline-v2.md`
-- `memory-fix/references/overlays/segment-causal-pipeline-v2.md`
-- `memory-review/references/overlays/segment-causal-pipeline-v2.md`
+- `examples/memory_hotspot_repair_kernel/segment_causal_pipeline_v2/overlays/memory-check/`
+- `examples/memory_hotspot_repair_kernel/segment_causal_pipeline_v2/overlays/memory-fix/`
+- `examples/memory_hotspot_repair_kernel/segment_causal_pipeline_v2/overlays/memory-review/`
 
 主要描述的热点形态包括：
 
@@ -412,10 +416,16 @@ overlay 用于承载项目专有、重复出现且高价值的局部规则。它
 
 此外还提供了：
 
-- `.codex/skills-review/references/overlay-pattern.md`
-- `.codex/skills-review/references/generic-overlay-template.md`
+- `packages/memory_hotspot_repair_kernel/references/overlay-pattern.md`
+- `packages/memory_hotspot_repair_kernel/references/generic-overlay-template.md`
 
 用于支持新项目快速建立 overlay。
+
+需要强调的是：
+
+- `packages/` 中保留的是通用、可迁移的核心能力
+- `examples/` 中保留的是 repo-specific overlay 和示例配置
+- example overlay 不会自动并入 core package 的默认规则集
 
 ![图 2. Core 规则与 overlay 规则的职责边界](./assets/memory-skill-suite-overlay.svg)
 
@@ -458,6 +468,8 @@ overlay 用于承载项目专有、重复出现且高价值的局部规则。它
 - 允许外部宿主复用工作流
 
 ### 7.3 degraded mode
+
+`degraded mode` 指在完整自动执行条件不满足时，系统退化为保留部分能力的执行状态。
 
 当 `codex` backend 的 preflight 失败但允许退化执行时，系统进入 degraded mode。该模式不能替代完整闭环，但仍具有以下价值：
 
@@ -564,7 +576,7 @@ overlay 用于承载项目专有、重复出现且高价值的局部规则。它
 
 ### 10.1 案例目的
 
-仅有设计说明不足以证明该套件具备实际工程价值。因此，本节选取一轮真实运行，用于说明：
+仅有设计说明不足以证明该套件具备实际工程价值。因此，本节选取一轮历史真实运行，用于说明：
 
 - 套件如何在受限宿主环境中仍然产生有效产物
 - validation 失败如何被正确解释
@@ -580,7 +592,9 @@ overlay 用于承载项目专有、重复出现且高价值的局部规则。它
 - 实际执行轮数：`1`
 - 停止原因：`prompt_bundle_generated`
 
-其含义是：系统未在当前宿主中自动完成完整闭环，而是优先稳定导出一整套可迁移的提示包，并执行本地最小验证。
+其含义是：系统未在当时宿主中自动完成完整闭环，而是优先稳定导出一整套可迁移的提示包，并执行本地最小验证。
+
+这一案例用于说明工作流和判断逻辑，不表示当前分享仓库默认包含同名运行目录。
 
 ### 10.3 实际执行过程
 
@@ -637,15 +651,19 @@ summary 中记录的高信号信息包括：
 
 ### 11.1 为什么需要同步
 
-repo 内 skill 是开发源；全局 skill 库才是 Codex 实际加载的目录。如果没有同步机制，容易出现：
+这里的“同步”主要针对 Codex 安装路径。
+
+repo 内 skill 是开发源；全局 skill 库是 Codex 读取已安装 skill 的目录。如果没有同步机制，容易出现：
 
 - repo 内已更新
 - 全局 skill 库仍是旧版本
 - 使用效果与源码状态不一致
 
+对于非 Codex 宿主，不需要这一步。那类场景直接使用 `packages/memory_hotspot_repair_kernel/` 作为便携方法包即可。
+
 ### 11.2 同步脚本
 
-同步脚本为：
+Codex 安装路径使用的同步脚本为：
 
 `packages/memory_hotspot_repair_kernel/scripts/sync_to_codex_home.py`
 
@@ -667,16 +685,23 @@ repo 内 skill 是开发源；全局 skill 库才是 Codex 实际加载的目录
 - `__pycache__`
 - `.pyc`
 
-### 11.3 当前状态
+### 11.3 分发视角下的理解
 
-当前环境中已经存在以下全局技能目录：
+从分发角度看，应将这一步理解为“可选安装方式”，而不是“唯一使用方式”。
 
-- `/root/.codex/skills/memory-check/SKILL.md`
-- `/root/.codex/skills/memory-fix/SKILL.md`
-- `/root/.codex/skills/memory-review/SKILL.md`
-- `/root/.codex/skills/memory-optimizer-agent/SKILL.md`
+对于 Codex 用户：
 
-这表明开发源与全局技能库之间已经建立了可重复的同步路径。
+- 可以将四个 skill 同步到 `$CODEX_HOME/skills`
+- 默认路径通常是 `~/.codex/skills`
+- 安装后可直接使用 `$memory-optimizer-agent`
+
+对于非 Codex 用户：
+
+- 不需要安装到全局 skill 库
+- 直接使用 `packages/memory_hotspot_repair_kernel/`
+- 重点阅读 `PORTABLE_USAGE.md` 与 `generic.prompt_bundle.yaml`
+
+这表明当前仓库同时支持“Codex 安装式使用”和“非 Codex 便携工作流使用”两条路径。
 
 ---
 
@@ -717,12 +742,16 @@ repo 内 skill 是开发源；全局 skill 库才是 Codex 实际加载的目录
 
 如果要迁移到新项目，建议采用以下顺序：
 
-1. 复制或同步整套 skill 目录
+1. 复制或下载整套 package 目录
 2. 从 `generic.prompt_bundle.yaml` 起步
 3. 先运行 `prompt-bundle` 模式
 4. 检查 `check / fix / review` prompts 是否足以表达该 repo 的热点
 5. 仅在必要时补充 overlay
 6. 宿主稳定后，再尝试完整自动闭环
+
+如果目标宿主是 Codex，也可以在上述基础上增加一步：
+
+- 使用 `scripts/sync_to_codex_home.py` 执行全局安装
 
 其优点包括：
 
@@ -759,11 +788,14 @@ repo 内 skill 是开发源；全局 skill 库才是 Codex 实际加载的目录
 
 ### 13.5 全局安装说明
 
-同步完成后，全局路径为：
+这一步只适用于 Codex 安装式使用。
 
-- `/root/.codex/skills/`
+同步完成后，全局路径通常为：
 
-在当前 WSL / Linux 环境中，`/root/` 指 Linux 子系统中的 root 用户 home 目录，不是 Windows 宿主上的普通用户目录。
+- `$CODEX_HOME/skills/`
+- 未设置 `CODEX_HOME` 时，通常是 `~/.codex/skills/`
+
+在当前 WSL / Linux 环境中，若实际用户为 `root`，则 `~` 可能对应 `/root/`。这属于当前环境的具体展开结果，不应被理解为所有机器上的固定路径。
 
 ![图 4. 新项目迁移这套 suite 的推荐路径](./assets/memory-skill-suite-migration.svg)
 
@@ -787,7 +819,7 @@ repo 内 skill 是开发源；全局 skill 库才是 Codex 实际加载的目录
 - generic run / prompt-bundle templates
 - generic overlay template
 - global skill sync script
-- 全局技能库同步
+- Codex 安装路径与非 Codex 便携路径的分离
 - 第一轮真实 prompt-bundle 运行验证
 
 ### 14.2 部分完成
@@ -892,4 +924,4 @@ repo 内 skill 是开发源；全局 skill 库才是 Codex 实际加载的目录
 
 这套 memory hotspot skill suite 的核心价值，不在于“是否自动优化了某段代码”，而在于它将一类高度经验化的内存问题整理成了一套可复用、可迁移、可验证、可归档的工程结构。
 
-从当前状态看，它已经完成了从单项目 prompt 到通用 skill suite 的转变。后续仍可以继续补充评估语料、稳定性验证和更完整的可视化工件，但作为一套可分享、可迁移的工程方案，其基本形态已经成立。
+从当前状态看，它已经完成了从单项目 prompt 到通用 skill suite 的转变。它既可以作为 Codex 中的可安装 skill 包使用，也可以作为更通用宿主环境中的便携 workflow 使用。后续仍可以继续补充评估语料、稳定性验证和更完整的可视化工件，但作为一套可分享、可迁移的工程方案，其基本形态已经成立。
