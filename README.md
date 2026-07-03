@@ -113,6 +113,49 @@ In other words:
 - use one entry point when you want the whole check -> fix -> validate -> review loop
 - use a single sub-skill when you only need one stage
 
+## Can This Repository Run a Full Loop
+
+Yes, but the exact form depends on the host environment.
+
+### In Codex
+
+This repository supports a real bounded loop through:
+
+- the installed entry point `$memory-optimizer-agent`
+- the executable orchestrator `memory-optimizer-agent/scripts/orchestrate.py`
+
+In this mode, users can trigger one main entry point and let it coordinate:
+
+1. `memory-check`
+2. `memory-fix`
+3. validation
+4. `memory-review`
+5. stop-or-continue decision
+
+The default behavior is a bounded loop rather than an open-ended optimization pass:
+
+- default: up to `2` rounds
+- optional aggressive mode: up to `3` rounds when explicitly requested
+
+### In Other Agents or Custom Environments
+
+This repository still supports the same loop logic, but usually as a portable workflow rather than a guaranteed host-native auto-runner.
+
+That means:
+
+- the loop design is reusable
+- the check -> fix -> validate -> review sequence is preserved
+- the target host may need to execute each stage using prompts, configs, or local automation
+
+So the portable package is loop-capable, but whether the loop runs fully automatically depends on the target host.
+
+### Practical Interpretation
+
+If a user asks, "Can I use one entry point to run the whole process?", the short answer is:
+
+- `yes` in Codex and script-driven usage
+- `yes in method`, but not always `yes in automatic execution`, in more general agent environments
+
 ## Installation
 
 ### For Codex
