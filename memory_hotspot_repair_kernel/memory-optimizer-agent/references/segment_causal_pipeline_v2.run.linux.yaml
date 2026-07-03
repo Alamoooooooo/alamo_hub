@@ -1,0 +1,83 @@
+workspace_root: ../../../../
+target_paths:
+- src/segment_causal_pipeline_v2/common.py
+- src/segment_causal_pipeline_v2/cate.py
+- src/segment_causal_pipeline_v2/recommendation_scoring.py
+- src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py
+- src/segment_causal_pipeline_v2/v2_settings.py
+default_profile: default
+profiles:
+  fast:
+    max_rounds: 1
+  default:
+    max_rounds: 2
+  aggressive:
+    max_rounds: 3
+codex_command: codex
+sandbox_mode: workspace-write
+approval_policy: never
+continue_on_validation_failure: true
+codex_timeout_seconds: 900
+codex_preflight_timeout_seconds: 120
+validation_timeout_seconds: 300
+default_shell: auto
+preflight_required: true
+allow_degraded_without_codex: true
+validation_commands:
+- name: py_compile_segment_pipeline
+  shell: auto
+  required: true
+  timeout_seconds: 60
+  command: "@'\nimport py_compile\nfiles = [\n    \"src/segment_causal_pipeline_v2/common.py\"\
+    ,\n    \"src/segment_causal_pipeline_v2/cate.py\",\n    \"src/segment_causal_pipeline_v2/recommendation_scoring.py\"\
+    ,\n    \"src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py\"\
+    ,\n    \"src/segment_causal_pipeline_v2/v2_settings.py\",\n]\nfor f in files:\n\
+    \    py_compile.compile(f, doraise=True)\n    print(\"OK\", f)\n'@ | python -\n"
+- name: smoke_segment_level_scoring
+  shell: auto
+  required: true
+  timeout_seconds: 180
+  command: 'python src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py
+    --config src/segment_causal_pipeline_v2/tmp_smoke/segment_level_recommendation_scoring_smoke.yaml
+
+    '
+- name: smoke_recommendation_scoring
+  shell: auto
+  required: true
+  timeout_seconds: 180
+  command: 'python src/segment_causal_pipeline_v2/recommendation_scoring.py --config
+    src/segment_causal_pipeline_v2/tmp_smoke/recommendation_scoring_smoke.yaml
+
+    '
+check_prompt_extra: 'Focus on the remaining memory hotspots in the segment causal
+  pipeline, especially:
+
+  - residual broad scans
+
+  - list(glob(...)) style path enumeration
+
+  - fake chunking
+
+  - final aggregation peaks
+
+  Prefer practical, codebase-specific findings over generic advice.
+
+  '
+fix_prompt_extra: 'Prefer minimal, behavior-preserving fixes in the segment causal
+  pipeline.
+
+  Do not broaden scope outside the listed files unless a tiny helper change is required.
+
+  '
+review_prompt_extra: 'Review specifically for correctness regressions introduced by
+  memory optimizations in:
+
+  - fallback behavior
+
+  - stale temp views / stale relations
+
+  - output contracts
+
+  - resume / overwrite behavior
+
+  '

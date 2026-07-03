@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .label { font: 600 19px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .body { font: 400 16px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #374151; }
+      .small { font: 400 14px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2.1; rx: 18; ry: 18; }
+      .core { fill: #eff6ff; stroke: #2563eb; stroke-width: 2.4; rx: 18; ry: 18; }
+      .overlay { fill: #ecfdf5; stroke: #059669; stroke-width: 2.4; rx: 18; ry: 18; }
+      .warn { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.4; rx: 18; ry: 18; }
+      .arrow { stroke: #475569; stroke-width: 2.4; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="920" fill="#f3f6fb"/>
+  <text x="800" y="58" text-anchor="middle" class="title">Core Rules vs Overlay Rules</text>
+  <text x="800" y="90" text-anchor="middle" class="subtitle">Keep generic knowledge stable, and isolate repo-specific repeated patterns</text>
+
+  <rect x="80" y="130" width="670" height="700" class="core"/>
+  <text x="415" y="176" text-anchor="middle" class="label">What Belongs in the Core</text>
+  <text x="125" y="235" class="body">• universal materialization and copy-multiplier rules</text>
+  <text x="125" y="270" class="body">• pandas / DuckDB / Polars / Arrow / NumPy memory patterns</text>
+  <text x="125" y="305" class="body">• structured severity, pattern_id, and review protocol fields</text>
+  <text x="125" y="340" class="body">• behavior-preserving remediation principles</text>
+  <text x="125" y="375" class="body">• general validation and dependency-diagnostics logic</text>
+  <text x="125" y="440" class="label">Why keep this layer stable</text>
+  <text x="125" y="482" class="body">1. It transfers across repositories.</text>
+  <text x="125" y="517" class="body">2. It avoids project-private prompt drift.</text>
+  <text x="125" y="552" class="body">3. It keeps the main skill understandable.</text>
+  <text x="125" y="587" class="body">4. It makes protocol outputs comparable.</text>
+
+  <rect x="850" y="130" width="670" height="700" class="overlay"/>
+  <text x="1185" y="176" text-anchor="middle" class="label">What Belongs in an Overlay</text>
+  <text x="895" y="235" class="body">• repeated hotspot shapes from one repo or pipeline</text>
+  <text x="895" y="270" class="body">• local behavior contracts that generic rules may misread</text>
+  <text x="895" y="305" class="body">• validation hints tied to repo structure and smoke paths</text>
+  <text x="895" y="340" class="body">• repo-specific review targets and residual-risk patterns</text>
+  <text x="895" y="405" class="label">Current concrete example</text>
+  <text x="895" y="447" class="body">segment-causal-pipeline-v2 overlay</text>
+  <text x="925" y="482" class="body">• broad parquet scan</text>
+  <text x="925" y="517" class="body">• fake chunking</text>
+  <text x="925" y="552" class="body">• frame / NumPy / prediction overlap</text>
+  <text x="925" y="587" class="body">• ranking or report becomes new peak</text>
+
+  <path d="M750 350 H835" class="arrow"/>
+
+  <rect x="330" y="700" width="940" height="90" class="warn"/>
+  <text x="800" y="740" text-anchor="middle" class="label">Decision Rule</text>
+  <text x="800" y="770" text-anchor="middle" class="body">If a rule is stable across many repositories, keep it in the core. If it only matters for repeated local patterns, move it into an overlay.</text>
+</svg>

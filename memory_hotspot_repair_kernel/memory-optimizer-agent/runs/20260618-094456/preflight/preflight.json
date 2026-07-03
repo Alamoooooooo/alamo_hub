@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-06-18T09:45:55",
+  "cli_available": true,
+  "auth_ready": true,
+  "auth_error": "",
+  "auth_diagnostic": "",
+  "auth_transport_hint": "",
+  "allow_degraded_without_codex": true
+}

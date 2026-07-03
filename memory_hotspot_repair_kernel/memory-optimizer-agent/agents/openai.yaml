@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Optimizer Agent"
+  short_description: "Run a bounded check-fix-smoke-review loop for memory hotspots."
+  default_prompt: "Use $memory-optimizer-agent to run a bounded memory optimization loop over this codebase with check, fix, smoke validation, review, and a final convergence summary."

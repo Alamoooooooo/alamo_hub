@@ -1,0 +1,28 @@
+{
+  "workspace_root": "/mnt/e/alamowork/causalmlforguangfen/CausalModel_1w-main/CausalModel_1w-main",
+  "target_paths": [
+    "src/segment_causal_pipeline_v2/common.py",
+    "src/segment_causal_pipeline_v2/cate.py",
+    "src/segment_causal_pipeline_v2/recommendation_scoring.py",
+    "src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py",
+    "src/segment_causal_pipeline_v2/v2_settings.py"
+  ],
+  "started_at": "2026-07-01T10:57:37",
+  "mode": "full",
+  "status": "failed",
+  "profile_name": "fast",
+  "preflight": {},
+  "resumed_from": null,
+  "partial_rerun_from_round": null,
+  "rounds": [],
+  "memory_summary": {
+    "hotspots": [],
+    "fixed_issues": [],
+    "regressions": [],
+    "notes": []
+  },
+  "stop_reason": "error: FileNotFoundError: [Errno 2] No such file or directory: 'codex.cmd'",
+  "final_fix_summary": "",
+  "final_review_summary": "",
+  "finished_at": "2026-07-01T10:57:43"
+}

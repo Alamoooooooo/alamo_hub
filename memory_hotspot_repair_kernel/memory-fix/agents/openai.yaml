@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Fix"
+  short_description: "Apply safe fixes for memory bottlenecks."
+  default_prompt: "Use $memory-fix to apply safe, targeted fixes for the memory bottlenecks identified in this codebase while preserving behavior."

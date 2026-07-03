@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .label { font: 600 20px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .body { font: 400 16px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #374151; }
+      .small { font: 400 14px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2.1; rx: 18; ry: 18; }
+      .blue { fill: #eff6ff; stroke: #2563eb; stroke-width: 2.4; rx: 18; ry: 18; }
+      .orange { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.4; rx: 18; ry: 18; }
+      .green { fill: #ecfdf5; stroke: #059669; stroke-width: 2.4; rx: 18; ry: 18; }
+      .gray { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.8; rx: 16; ry: 16; }
+      .arrow { stroke: #475569; stroke-width: 2.4; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 8 7; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="#f3f6fb"/>
+  <text x="800" y="60" text-anchor="middle" class="title">One Real Prompt-Bundle Run: What Happened and Why It Matters</text>
+  <text x="800" y="92" text-anchor="middle" class="subtitle">A host-neutral run that generated prompts successfully and separated dependency failure from code failure</text>
+
+  <rect x="100" y="140" width="1400" height="760" class="box"/>
+
+  <rect x="150" y="190" width="280" height="155" class="blue"/>
+  <text x="290" y="232" text-anchor="middle" class="label">Step 1. Start Run</text>
+  <text x="180" y="272" class="body">Mode: prompt-bundle</text>
+  <text x="180" y="302" class="body">Profile: fast</text>
+  <text x="180" y="332" class="body">Goal: generate portable prompts</text>
+
+  <rect x="510" y="190" width="280" height="155" class="blue"/>
+  <text x="650" y="232" text-anchor="middle" class="label">Step 2. Resolve Config</text>
+  <text x="540" y="272" class="body">Load target paths and overlays</text>
+  <text x="540" y="302" class="body">Prepare validation commands</text>
+  <text x="540" y="332" class="body">Choose one-round fast profile</text>
+
+  <rect x="870" y="190" width="280" height="155" class="green"/>
+  <text x="1010" y="232" text-anchor="middle" class="label">Step 3. Generate Bundle</text>
+  <text x="900" y="272" class="body">Export check.prompt.md</text>
+  <text x="900" y="302" class="body">Export fix.prompt.md</text>
+  <text x="900" y="332" class="body">Export review.prompt.md and README</text>
+
+  <rect x="1230" y="190" width="220" height="155" class="green"/>
+  <text x="1340" y="232" text-anchor="middle" class="label">Result</text>
+  <text x="1260" y="272" class="body">Status: completed</text>
+  <text x="1260" y="302" class="body">Rounds: 1</text>
+  <text x="1260" y="332" class="body">Stop: prompt_bundle_generated</text>
+
+  <path d="M430 267 H495" class="arrow"/>
+  <path d="M790 267 H855" class="arrow"/>
+  <path d="M1150 267 H1215" class="arrow"/>
+
+  <rect x="170" y="430" width="560" height="330" class="orange"/>
+  <text x="450" y="472" text-anchor="middle" class="label">Validation Signal</text>
+  <text x="200" y="520" class="body">Validation passed: False</text>
+  <text x="200" y="555" class="body">Dependency diagnostics: duckdb</text>
+  <text x="200" y="590" class="body">Interpretation:</text>
+  <text x="230" y="625" class="body">• the environment is missing a required package</text>
+  <text x="230" y="660" class="body">• this is not automatically treated as a code regression</text>
+  <text x="230" y="695" class="body">• the run still produces usable prompt artifacts</text>
+
+  <rect x="860" y="430" width="560" height="330" class="gray"/>
+  <text x="1140" y="472" text-anchor="middle" class="label">Why This Case Matters</text>
+  <text x="890" y="520" class="body">1. It proves the suite can still work when full host execution is unavailable.</text>
+  <text x="890" y="560" class="body">2. It shows the runtime can separate environment failure from code failure.</text>
+  <text x="890" y="600" class="body">3. It produces shareable, inspectable prompt artifacts for external execution.</text>
+  <text x="890" y="640" class="body">4. It demonstrates why prompt-bundle is a portability layer, not a downgrade.</text>
+
+  <path d="M730 595 H845" class="dash"/>
+
+  <rect x="250" y="800" width="1100" height="70" class="box"/>
+  <text x="800" y="842" text-anchor="middle" class="label">Key takeaway: the run succeeded as a workflow artifact export even though a local dependency blocked validation success.</text>
+</svg>

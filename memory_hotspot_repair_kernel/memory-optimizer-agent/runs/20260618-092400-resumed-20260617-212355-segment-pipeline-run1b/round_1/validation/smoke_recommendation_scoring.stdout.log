@@ -1,0 +1,34 @@
+[segment-causal-v2][2026-06-18 09:24:50+0800] start config=src/segment_causal_pipeline_v2/tmp_smoke/recommendation_scoring_smoke.yaml
+[segment-causal-v2][2026-06-18 09:24:50+0800] recommendation scoring already completed, skipping
+
+[checkpoint][2026-06-18 09:24:50+0800] === Checkpoint Summary ===
+
+[checkpoint][2026-06-18 09:24:50+0800] cate:
+[checkpoint][2026-06-18 09:24:50+0800]   Completed: 2/2
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p001 (1.7s)
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p002 (10.8s)
+
+[checkpoint][2026-06-18 09:24:50+0800] score:
+[checkpoint][2026-06-18 09:24:50+0800]   Completed: 1/1
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] global (14.0s)
+
+[checkpoint][2026-06-18 09:24:50+0800] train:
+[checkpoint][2026-06-18 09:24:50+0800]   Completed: 2/2
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p001 (0.0s)
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p002 (6.2s)
+
+[checkpoint][2026-06-18 09:24:50+0800] === Checkpoint Summary ===
+
+[checkpoint][2026-06-18 09:24:50+0800] cate:
+[checkpoint][2026-06-18 09:24:50+0800]   Completed: 2/2
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p001 (1.7s)
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p002 (10.8s)
+
+[checkpoint][2026-06-18 09:24:50+0800] score:
+[checkpoint][2026-06-18 09:24:50+0800]   Completed: 1/1
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] global (14.0s)
+
+[checkpoint][2026-06-18 09:24:50+0800] train:
+[checkpoint][2026-06-18 09:24:50+0800]   Completed: 2/2
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p001 (0.0s)
+[checkpoint][2026-06-18 09:24:50+0800]     [OK] product:p002 (6.2s)

@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summary",
+    "blocking_findings",
+    "non_blocking_findings",
+    "what_improved",
+    "residual_hotspots",
+    "continue_recommended",
+    "stop_reason"
+  ],
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "blocking_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "severity", "file", "reason"],
+        "properties": {
+          "title": { "type": "string" },
+          "severity": { "type": "string", "enum": ["P1", "P2", "High", "Medium"] },
+          "file": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "non_blocking_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_improved": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "residual_hotspots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "continue_recommended": {
+      "type": "boolean"
+    },
+    "stop_recommended": {
+      "type": "boolean"
+    },
+    "stop_reason": {
+      "type": "string"
+    }
+  }
+}

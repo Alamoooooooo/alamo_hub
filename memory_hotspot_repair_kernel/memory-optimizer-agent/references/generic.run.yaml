@@ -1,0 +1,45 @@
+workspace_root: .
+target_paths:
+  - src
+
+execution_backend: codex
+default_profile: default
+profiles:
+  fast:
+    max_rounds: 1
+  default:
+    max_rounds: 2
+  aggressive:
+    max_rounds: 3
+
+codex_command: codex
+sandbox_mode: workspace-write
+approval_policy: never
+continue_on_validation_failure: true
+codex_timeout_seconds: 900
+codex_preflight_timeout_seconds: 120
+validation_timeout_seconds: 300
+default_shell: auto
+preflight_required: true
+allow_degraded_without_codex: true
+
+validation_commands:
+  - name: syntax_check_placeholder
+    shell: bash
+    required: false
+    timeout_seconds: 30
+    command: |
+      python3 - <<'PY'
+      print("Replace this placeholder with repo-specific validation commands.")
+      PY
+
+check_prompt_extra: |
+  Prefer practical, codebase-specific memory findings over generic advice.
+  Start from the real hot path and identify the first materialization boundary.
+
+fix_prompt_extra: |
+  Prefer localized, behavior-preserving changes.
+  Do not broaden scope unless the hotspot cannot be addressed locally.
+
+review_prompt_extra: |
+  Review for correctness regressions first, then memory regressions, then maintainability.

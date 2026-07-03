@@ -1,0 +1,47 @@
+2026-06-17T13:46:54.059907Z  WARN codex_core_plugins::startup_remote_sync: startup remote plugin sync failed; will retry on next app-server start error=chatgpt authentication required to sync remote plugins
+2026-06-17T13:46:54.107587Z  WARN codex_core_plugins::manager: failed to warm featured plugin ids cache error=failed to send remote plugin sync request to https://chatgpt.com/backend-api/plugins/featured: error sending request for url (https://chatgpt.com/backend-api/plugins/featured?platform=codex)
+2026-06-17T13:46:54.432455Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+OpenAI Codex v0.130.0
+--------
+workdir: E:\alamowork\causalmlforguangfen\CausalModel_1w-main\CausalModel_1w-main
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019ed5d5-b9df-73a2-98ff-d43efbf0bc28
+--------
+user
+Return JSON matching the schema with ok=true and message='preflight-ok'.
+2026-06-17T13:46:55.889842Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:46:55.890792Z  WARN codex_core::session_startup_prewarm: startup websocket prewarm setup failed: unexpected status 401 Unauthorized: Missing bearer or basic authentication in header, url: wss://api.openai.com/v1/responses, cf-ray: a0d280cf095bfdc2-SIN
+2026-06-17T13:46:56.910211Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt[0]: prompt must be at most 128 characters path=C:\Users\CodexSandboxOffline\.codex\.tmp\plugins\plugins\ngs-analysis\.codex-plugin/plugin.json
+2026-06-17T13:46:57.456556Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:46:57.456855Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (1/5 in 212ms)...
+2026-06-17T13:46:58.985371Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:46:58.985796Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (2/5 in 422ms)...
+ERROR: Reconnecting... 2/5
+2026-06-17T13:47:00.689705Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:47:00.690122Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (3/5 in 752ms)...
+ERROR: Reconnecting... 3/5
+2026-06-17T13:47:02.751239Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:47:02.751686Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (4/5 in 1.752s)...
+ERROR: Reconnecting... 4/5
+2026-06-17T13:47:05.764410Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:47:05.764785Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (5/5 in 2.904s)...
+ERROR: Reconnecting... 5/5
+2026-06-17T13:47:09.863364Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 401 Unauthorized, url: wss://api.openai.com/v1/responses
+2026-06-17T13:47:09.863803Z  WARN codex_core::client: falling back to HTTP
+2026-06-17T13:47:13.038619Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (1/5 in 189ms)...
+ERROR: Reconnecting... 1/5
+2026-06-17T13:47:16.293002Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (2/5 in 411ms)...
+ERROR: Reconnecting... 2/5
+2026-06-17T13:47:19.750941Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (3/5 in 811ms)...
+ERROR: Reconnecting... 3/5
+2026-06-17T13:47:23.663609Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (4/5 in 1.48s)...
+ERROR: Reconnecting... 4/5
+2026-06-17T13:47:28.336017Z  WARN codex_core::session::turn: stream disconnected - retrying sampling request (5/5 in 3.346s)...
+ERROR: Reconnecting... 5/5
+ERROR: stream disconnected before completion: error sending request for url (https://api.openai.com/v1/responses)
+ERROR: stream disconnected before completion: error sending request for url (https://api.openai.com/v1/responses)

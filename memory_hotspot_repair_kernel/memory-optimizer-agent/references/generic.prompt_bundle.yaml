@@ -1,0 +1,43 @@
+workspace_root: .
+target_paths:
+  - src
+
+execution_backend: prompt-bundle
+default_profile: fast
+profiles:
+  fast:
+    max_rounds: 1
+  default:
+    max_rounds: 2
+  aggressive:
+    max_rounds: 3
+
+codex_command: codex
+sandbox_mode: workspace-write
+approval_policy: never
+continue_on_validation_failure: true
+codex_timeout_seconds: 900
+codex_preflight_timeout_seconds: 120
+validation_timeout_seconds: 300
+default_shell: auto
+preflight_required: false
+allow_degraded_without_codex: true
+
+validation_commands:
+  - name: syntax_check_placeholder
+    shell: bash
+    required: false
+    timeout_seconds: 30
+    command: |
+      python3 - <<'PY'
+      print("Replace this placeholder with repo-specific validation commands.")
+      PY
+
+check_prompt_extra: |
+  Generate a portable memory-hotspot review for the selected code paths.
+
+fix_prompt_extra: |
+  Generate a portable, behavior-preserving remediation plan or patch guidance.
+
+review_prompt_extra: |
+  Generate a portable post-fix review focused on correctness, moved peaks, and validation gaps.

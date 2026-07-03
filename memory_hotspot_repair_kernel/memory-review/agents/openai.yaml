@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Review"
+  short_description: "Review memory-fix changes with general and memory-specific checks."
+  default_prompt: "Use $memory-review to review the current code changes with normal code review rigor plus memory-specific regression and hotspot checks."

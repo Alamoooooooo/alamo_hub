@@ -1,0 +1,54 @@
+workspace_root: ../../../../
+target_paths:
+  - src/segment_causal_pipeline_v2
+
+execution_backend: codex
+default_profile: default
+profiles:
+  fast:
+    max_rounds: 1
+  default:
+    max_rounds: 2
+  aggressive:
+    max_rounds: 3
+
+codex_command: codex.cmd
+sandbox_mode: workspace-write
+approval_policy: never
+continue_on_validation_failure: true
+codex_timeout_seconds: 900
+codex_preflight_timeout_seconds: 120
+validation_timeout_seconds: 300
+default_shell: auto
+preflight_required: true
+allow_degraded_without_codex: true
+
+validation_commands:
+  - name: py_compile_segment_pipeline
+    shell: bash
+    required: true
+    timeout_seconds: 60
+    command: |
+      python3 - <<'PY'
+      import py_compile
+      files = [
+          "src/segment_causal_pipeline_v2/common.py",
+          "src/segment_causal_pipeline_v2/cate.py",
+          "src/segment_causal_pipeline_v2/recommendation_scoring.py",
+          "src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py",
+      ]
+      for f in files:
+          py_compile.compile(f, doraise=True)
+          print("OK", f)
+      PY
+
+  - name: segment_level_smoke
+    shell: auto
+    required: true
+    timeout_seconds: 180
+    command: |
+      python src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py --config src/segment_causal_pipeline_v2/tmp_smoke/segment_level_recommendation_scoring_smoke.yaml
+
+check_prompt_extra: ""
+fix_prompt_extra: ""
+review_prompt_extra: ""

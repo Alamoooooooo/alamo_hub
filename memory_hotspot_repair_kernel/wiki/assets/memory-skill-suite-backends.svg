@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .section { font: 700 22px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .label { font: 600 19px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .body { font: 400 16px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #374151; }
+      .small { font: 400 14px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2.1; rx: 18; ry: 18; }
+      .blue { fill: #eff6ff; stroke: #2563eb; stroke-width: 2.4; rx: 18; ry: 18; }
+      .orange { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.4; rx: 18; ry: 18; }
+      .green { fill: #ecfdf5; stroke: #059669; stroke-width: 2.4; rx: 18; ry: 18; }
+      .gray { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.8; rx: 16; ry: 16; }
+      .arrow { stroke: #475569; stroke-width: 2.4; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 8 7; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="#f3f6fb"/>
+  <text x="800" y="60" text-anchor="middle" class="title">Execution Backends and Artifact Paths</text>
+  <text x="800" y="92" text-anchor="middle" class="subtitle">Same core policy, different runtime dependencies and outputs</text>
+
+  <rect x="80" y="130" width="1440" height="780" class="box"/>
+
+  <rect x="130" y="180" width="1340" height="95" class="gray"/>
+  <text x="800" y="220" text-anchor="middle" class="label">Shared Core</text>
+  <text x="800" y="252" text-anchor="middle" class="body">memory-check / memory-fix / memory-review rules, protocol layer, pattern library, overlays</text>
+
+  <path d="M800 275 V325" class="arrow"/>
+
+  <rect x="150" y="330" width="590" height="455" class="blue"/>
+  <text x="445" y="372" text-anchor="middle" class="label">Codex Backend</text>
+  <text x="185" y="412" class="body">Execution shape</text>
+  <text x="215" y="442" class="body">1. preflight Codex runtime</text>
+  <text x="215" y="472" class="body">2. run check → fix → validate → review</text>
+  <text x="215" y="502" class="body">3. stop or continue by loop policy</text>
+  <text x="185" y="555" class="body">Strengths</text>
+  <text x="215" y="585" class="body">• highest automation</text>
+  <text x="215" y="615" class="body">• integrated run ledger</text>
+  <text x="215" y="645" class="body">• deterministic bounded loop</text>
+  <text x="185" y="698" class="body">Risks</text>
+  <text x="215" y="728" class="body">• auth / app-server / CLI coupling</text>
+  <text x="215" y="758" class="body">• host compatibility can block execution</text>
+
+  <rect x="860" y="330" width="590" height="455" class="orange"/>
+  <text x="1155" y="372" text-anchor="middle" class="label">Prompt-Bundle Backend</text>
+  <text x="895" y="412" class="body">Execution shape</text>
+  <text x="925" y="442" class="body">1. resolve config and overlays</text>
+  <text x="925" y="472" class="body">2. generate host-neutral prompts</text>
+  <text x="925" y="502" class="body">3. export validation diagnostics and README</text>
+  <text x="895" y="555" class="body">Strengths</text>
+  <text x="925" y="585" class="body">• portable across hosts and projects</text>
+  <text x="925" y="615" class="body">• prompt artifacts are shareable outputs</text>
+  <text x="925" y="645" class="body">• reduced dependence on Codex runtime</text>
+  <text x="895" y="698" class="body">Trade-offs</text>
+  <text x="925" y="728" class="body">• external host still needed for execution</text>
+  <text x="925" y="758" class="body">• loop is not completed automatically</text>
+
+  <path d="M740 560 H845" class="dash"/>
+  <text x="792" y="545" text-anchor="middle" class="small">same loop policy</text>
+
+  <rect x="150" y="810" width="610" height="68" class="green"/>
+  <text x="455" y="850" text-anchor="middle" class="label">Run Artifacts: summary.md, ledger.json, validation/, per-round outputs</text>
+
+  <rect x="840" y="810" width="610" height="68" class="green"/>
+  <text x="1145" y="842" text-anchor="middle" class="label">Prompt Bundle Outputs</text>
+  <text x="1145" y="864" text-anchor="middle" class="small">check.prompt.md · fix.prompt.md · review.prompt.md · bundle.json · README.md</text>
+</svg>

@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-07-01T10:58:54",
+  "cli_available": true,
+  "auth_ready": false,
+  "auth_error": "Codex step failed with exit code 2. See /mnt/e/alamowork/causalmlforguangfen/CausalModel_1w-main/CausalModel_1w-main/.codex/skills-review/memory-optimizer-agent/runs/20260701-105849/preflight/auth.stderr.log",
+  "auth_diagnostic": "unknown_error",
+  "auth_transport_hint": "",
+  "allow_degraded_without_codex": true
+}

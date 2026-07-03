@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .label { font: 600 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .body { font: 400 16px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #374151; }
+      .small { font: 400 14px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .step { fill: #ffffff; stroke: #334155; stroke-width: 2.1; rx: 18; ry: 18; }
+      .active { fill: #eff6ff; stroke: #2563eb; stroke-width: 2.5; rx: 18; ry: 18; }
+      .overlay { fill: #ecfdf5; stroke: #059669; stroke-width: 2.5; rx: 18; ry: 18; }
+      .warn { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.5; rx: 18; ry: 18; }
+      .arrow { stroke: #475569; stroke-width: 2.4; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 8 7; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="920" fill="#f3f6fb"/>
+  <text x="800" y="58" text-anchor="middle" class="title">Recommended Migration Path for a New Repository</text>
+  <text x="800" y="90" text-anchor="middle" class="subtitle">Start with the most portable path, then add repo-specific knowledge only when justified</text>
+
+  <rect x="110" y="170" width="260" height="175" class="active"/>
+  <text x="240" y="215" text-anchor="middle" class="label">Step 1</text>
+  <text x="240" y="248" text-anchor="middle" class="label">Use generic.prompt_bundle.yaml</text>
+  <text x="140" y="290" class="body">Begin with host-neutral config.</text>
+  <text x="140" y="320" class="body">Do not optimize for full automation first.</text>
+
+  <rect x="470" y="170" width="260" height="175" class="active"/>
+  <text x="600" y="215" text-anchor="middle" class="label">Step 2</text>
+  <text x="600" y="248" text-anchor="middle" class="label">Generate prompt bundle</text>
+  <text x="500" y="290" class="body">Export check, fix, review prompts</text>
+  <text x="500" y="320" class="body">plus validation diagnostics.</text>
+
+  <rect x="830" y="170" width="260" height="175" class="step"/>
+  <text x="960" y="215" text-anchor="middle" class="label">Step 3</text>
+  <text x="960" y="248" text-anchor="middle" class="label">Run on external host</text>
+  <text x="860" y="290" class="body">Use Codex or another coding agent.</text>
+  <text x="860" y="320" class="body">Validate output quality and fit.</text>
+
+  <rect x="1190" y="170" width="260" height="175" class="overlay"/>
+  <text x="1320" y="215" text-anchor="middle" class="label">Step 4</text>
+  <text x="1320" y="248" text-anchor="middle" class="label">Add overlay only if needed</text>
+  <text x="1220" y="290" class="body">Create local rules for repeated</text>
+  <text x="1220" y="320" class="body">repo-specific hotspot patterns.</text>
+
+  <path d="M370 257 H455" class="arrow"/>
+  <path d="M730 257 H815" class="arrow"/>
+  <path d="M1090 257 H1175" class="arrow"/>
+
+  <rect x="200" y="470" width="1200" height="120" class="warn"/>
+  <text x="800" y="515" text-anchor="middle" class="label">Practical Rule</text>
+  <text x="800" y="548" text-anchor="middle" class="body">First verify that the knowledge structure works. Only after that should you invest in a fully automated host-specific loop.</text>
+
+  <rect x="180" y="660" width="520" height="150" class="step"/>
+  <text x="440" y="705" text-anchor="middle" class="label">When to Stay on Prompt-Bundle</text>
+  <text x="210" y="745" class="body">• host is unstable</text>
+  <text x="210" y="775" class="body">• you need portability or sharing</text>
+  <text x="210" y="805" class="body">• you want inspectable prompts and artifacts</text>
+
+  <rect x="900" y="660" width="520" height="150" class="step"/>
+  <text x="1160" y="705" text-anchor="middle" class="label">When to Upgrade to Full Backend</text>
+  <text x="930" y="745" class="body">• host runtime is stable</text>
+  <text x="930" y="775" class="body">• validation commands are trustworthy</text>
+  <text x="930" y="805" class="body">• the repo benefits from bounded automation</text>
+
+  <path d="M800 590 V640" class="dash"/>
+</svg>

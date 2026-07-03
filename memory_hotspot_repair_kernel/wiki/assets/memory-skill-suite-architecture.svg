@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .section { font: 700 22px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .label { font: 600 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .body { font: 400 16px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #374151; }
+      .small { font: 400 14px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2.2; rx: 18; ry: 18; }
+      .soft { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.8; rx: 16; ry: 16; }
+      .core { fill: #eef6ff; stroke: #2563eb; stroke-width: 2.4; rx: 18; ry: 18; }
+      .adapter { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.4; rx: 18; ry: 18; }
+      .overlay { fill: #ecfdf5; stroke: #059669; stroke-width: 2.4; rx: 18; ry: 18; }
+      .protocol { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2.4; rx: 18; ry: 18; }
+      .arrow { stroke: #475569; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 8 7; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="#f3f6fb"/>
+
+  <text x="800" y="62" text-anchor="middle" class="title">Memory Hotspot Skill Suite: Overall Architecture</text>
+  <text x="800" y="92" text-anchor="middle" class="subtitle">Four coordinated skills, five knowledge layers, and one bounded optimization loop</text>
+
+  <rect x="70" y="130" width="1460" height="780" class="box"/>
+  <text x="110" y="170" class="section">A. Four Core Skills</text>
+
+  <rect x="120" y="210" width="300" height="165" class="core"/>
+  <text x="270" y="248" text-anchor="middle" class="label">memory-check</text>
+  <text x="150" y="286" class="body">• detect stack and runtime shape</text>
+  <text x="150" y="314" class="body">• locate first real materialization</text>
+  <text x="150" y="342" class="body">• estimate peak-memory multipliers</text>
+  <text x="150" y="370" class="body">• emit structured hotspot report</text>
+
+  <rect x="470" y="210" width="300" height="165" class="core"/>
+  <text x="620" y="248" text-anchor="middle" class="label">memory-fix</text>
+  <text x="500" y="286" class="body">• prioritize highest-value hotspot</text>
+  <text x="500" y="314" class="body">• preserve behavior and contracts</text>
+  <text x="500" y="342" class="body">• reduce materialization and copies</text>
+  <text x="500" y="370" class="body">• explain expected peak reduction</text>
+
+  <rect x="820" y="210" width="300" height="165" class="core"/>
+  <text x="970" y="248" text-anchor="middle" class="label">memory-review</text>
+  <text x="850" y="286" class="body">• independent post-fix review</text>
+  <text x="850" y="314" class="body">• validate claimed improvements</text>
+  <text x="850" y="342" class="body">• check moved peaks and regressions</text>
+  <text x="850" y="370" class="body">• classify blocking vs follow-up</text>
+
+  <rect x="1170" y="210" width="300" height="165" class="adapter"/>
+  <text x="1320" y="248" text-anchor="middle" class="label">memory-optimizer-agent</text>
+  <text x="1200" y="286" class="body">• bounded orchestration loop</text>
+  <text x="1200" y="314" class="body">• validation and stop decisions</text>
+  <text x="1200" y="342" class="body">• run artifacts and resume support</text>
+  <text x="1200" y="370" class="body">• host-adapter responsibilities</text>
+
+  <path d="M420 292 H455" class="arrow"/>
+  <path d="M770 292 H805" class="arrow"/>
+  <path d="M1120 292 H1155" class="arrow"/>
+
+  <text x="110" y="445" class="section">B. Five Knowledge Layers</text>
+
+  <rect x="120" y="475" width="250" height="300" class="soft"/>
+  <text x="245" y="515" text-anchor="middle" class="label">Layer 1</text>
+  <text x="245" y="548" text-anchor="middle" class="label">SKILL.md</text>
+  <text x="150" y="590" class="body">Responsibilities</text>
+  <text x="150" y="620" class="body">Workflow</text>
+  <text x="150" y="650" class="body">Output contract</text>
+  <text x="150" y="680" class="body">Reference routing</text>
+  <text x="150" y="725" class="small">Keep the entrypoint concise.</text>
+
+  <rect x="400" y="475" width="250" height="300" class="protocol"/>
+  <text x="525" y="515" text-anchor="middle" class="label">Layer 2</text>
+  <text x="525" y="548" text-anchor="middle" class="label">Protocol Layer</text>
+  <text x="430" y="590" class="body">decision-protocol</text>
+  <text x="430" y="620" class="body">remediation-protocol</text>
+  <text x="430" y="650" class="body">review-protocol</text>
+  <text x="430" y="725" class="small">Stabilize reasoning fields.</text>
+
+  <rect x="680" y="475" width="250" height="300" class="soft"/>
+  <text x="805" y="515" text-anchor="middle" class="label">Layer 3</text>
+  <text x="805" y="548" text-anchor="middle" class="label">Pattern Library</text>
+  <text x="710" y="590" class="body">pandas / DuckDB / Polars</text>
+  <text x="710" y="620" class="body">Arrow / Parquet / CSV</text>
+  <text x="710" y="650" class="body">NumPy / inference / GC</text>
+  <text x="710" y="725" class="small">Group by stack, not by repo.</text>
+
+  <rect x="960" y="475" width="250" height="300" class="overlay"/>
+  <text x="1085" y="515" text-anchor="middle" class="label">Layer 4</text>
+  <text x="1085" y="548" text-anchor="middle" class="label">Overlay Layer</text>
+  <text x="990" y="590" class="body">Repo-specific hotspot patterns</text>
+  <text x="990" y="620" class="body">Behavior contracts</text>
+  <text x="990" y="650" class="body">Validation hints</text>
+  <text x="990" y="725" class="small">Only for repeated local knowledge.</text>
+
+  <rect x="1240" y="475" width="250" height="300" class="adapter"/>
+  <text x="1365" y="515" text-anchor="middle" class="label">Layer 5</text>
+  <text x="1365" y="548" text-anchor="middle" class="label">Host Adapter</text>
+  <text x="1270" y="590" class="body">Codex backend</text>
+  <text x="1270" y="620" class="body">Prompt-bundle backend</text>
+  <text x="1270" y="650" class="body">Validation orchestration</text>
+  <text x="1270" y="725" class="small">Keep host coupling out of the core.</text>
+
+  <path d="M1320 375 V445" class="dash"/>
+  <path d="M270 375 V445" class="dash"/>
+  <path d="M620 375 V445" class="dash"/>
+  <path d="M970 375 V445" class="dash"/>
+
+  <rect x="180" y="815" width="1240" height="68" class="box"/>
+  <text x="800" y="856" text-anchor="middle" class="label">Bounded Loop: check → fix → validate → review → stop or continue</text>
+</svg>

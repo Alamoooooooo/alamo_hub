@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Check"
+  short_description: "Detect stack-specific memory risks and generate a review report."
+  default_prompt: "Use $memory-check to detect the codebase stack, review memory-risk patterns, and produce a structured memory-check report with targeted mitigations."

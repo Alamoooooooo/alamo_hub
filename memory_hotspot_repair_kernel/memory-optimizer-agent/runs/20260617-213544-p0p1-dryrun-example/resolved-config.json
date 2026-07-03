@@ -1,0 +1,38 @@
+{
+  "workspace_root": "E:\\alamowork\\causalmlforguangfen\\CausalModel_1w-main\\CausalModel_1w-main",
+  "target_paths": [
+    "src\\segment_causal_pipeline_v2"
+  ],
+  "max_rounds": 2,
+  "codex_command": "codex.cmd",
+  "sandbox_mode": "workspace-write",
+  "approval_policy": "never",
+  "model": null,
+  "profile": null,
+  "additional_writable_dirs": [],
+  "validation_commands": [
+    {
+      "name": "py_compile_segment_pipeline",
+      "command": "@'\nimport py_compile\nfiles = [\n    \"src/segment_causal_pipeline_v2/common.py\",\n    \"src/segment_causal_pipeline_v2/cate.py\",\n    \"src/segment_causal_pipeline_v2/recommendation_scoring.py\",\n    \"src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py\",\n]\nfor f in files:\n    py_compile.compile(f, doraise=True)\n    print(\"OK\", f)\n'@ | python -\n",
+      "shell": "auto",
+      "workdir": null,
+      "required": true,
+      "timeout_seconds": 60
+    },
+    {
+      "name": "segment_level_smoke",
+      "command": "python src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py --config src/segment_causal_pipeline_v2/tmp_smoke/segment_level_recommendation_scoring_smoke.yaml\n",
+      "shell": "auto",
+      "workdir": null,
+      "required": true,
+      "timeout_seconds": 180
+    }
+  ],
+  "continue_on_validation_failure": true,
+  "check_prompt_extra": "",
+  "fix_prompt_extra": "",
+  "review_prompt_extra": "",
+  "codex_timeout_seconds": 900,
+  "validation_timeout_seconds": 300,
+  "default_shell": "auto"
+}
