@@ -2,6 +2,11 @@
 
 This repository is a multi-skill hub for directly installable Codex skill packages.
 
+It is designed to support two usage modes:
+
+- Codex users can install one package and then call the installed skills directly.
+- Other agents or custom environments can reuse the same package as a portable workflow bundle without relying on Codex-specific skill installation.
+
 Current published package:
 
 - `packages/memory_hotspot_repair_kernel/`
@@ -17,14 +22,58 @@ alamo_skillhub/
 ├── LICENSE
 ├── packages/
 │   └── memory_hotspot_repair_kernel/
+│       ├── memory-check/
+│       │   ├── SKILL.md
+│       │   ├── agents/
+│       │   └── references/
+│       ├── memory-fix/
+│       │   ├── SKILL.md
+│       │   ├── agents/
+│       │   └── references/
+│       ├── memory-review/
+│       │   ├── SKILL.md
+│       │   ├── agents/
+│       │   └── references/
+│       ├── memory-optimizer-agent/
+│       │   ├── SKILL.md
+│       │   ├── agents/
+│       │   ├── assets/
+│       │   ├── references/
+│       │   └── scripts/
+│       ├── references/
+│       ├── scripts/
+│       ├── wiki/
+│       └── PORTABLE_USAGE.md
 └── examples/
     └── memory_hotspot_repair_kernel/
         └── segment_causal_pipeline_v2/
+            ├── overlays/
+            │   ├── memory-check/
+            │   ├── memory-fix/
+            │   └── memory-review/
+            ├── segment_causal_pipeline_v2.prompt_bundle.yaml
+            ├── segment_causal_pipeline_v2.run.yaml
+            └── segment_causal_pipeline_v2.run.linux.yaml
 ```
 
 Use `packages/` for installable skill packages.
 
 Use `examples/` for optional repo-specific examples, overlays, and sample run configurations.
+
+## What To Use
+
+If you only want the portable skill package, focus on:
+
+- `packages/memory_hotspot_repair_kernel/`
+
+If you want a complete example of how the package can be adapted to a specific repository, also inspect:
+
+- `examples/memory_hotspot_repair_kernel/`
+
+If you are sharing this repository with others, the important rule is:
+
+- `packages/` is the product
+- `examples/` is optional reference material
 
 ## Package
 
@@ -59,9 +108,16 @@ The other three skills can also be used independently:
 - `memory-fix`: targeted remediation only
 - `memory-review`: independent post-fix review only
 
+In other words:
+
+- use one entry point when you want the whole check -> fix -> validate -> review loop
+- use a single sub-skill when you only need one stage
+
 ## Installation
 
 ### For Codex
+
+Use this path if the target environment is Codex and supports skill installation into `$CODEX_HOME/skills`.
 
 From this repository:
 
@@ -82,9 +138,17 @@ cd packages/memory_hotspot_repair_kernel
 python3 scripts/sync_to_codex_home.py --dry-run
 ```
 
+After installation, the recommended main entry point is:
+
+- `$memory-optimizer-agent`
+
+You do not need to install the four skills one by one. The sync script installs the whole package in one step.
+
 ### For Other Agents
 
-If the target environment is not Codex, do not treat this repository as a Codex-only installable artifact.
+Use this path if the target environment is not Codex, does not support `$CODEX_HOME/skills`, or does not understand skill tokens such as `$memory-check`.
+
+Do not treat this repository as a Codex-only installable artifact.
 
 In that case, use:
 
@@ -94,9 +158,17 @@ In that case, use:
 
 No Codex skill installation is required for this path.
 
+You also do not need `examples/` in order to start. The portable core lives entirely under `packages/memory_hotspot_repair_kernel/`.
+
 ## Usage
 
 ### For Codex
+
+Recommended first-use flow:
+
+1. install the package with `python3 scripts/sync_to_codex_home.py`
+2. open Codex in the target repository
+3. use the primary entry point `memory-optimizer-agent`
 
 Typical entry-point requests:
 
@@ -120,6 +192,75 @@ For non-Codex environments, the recommended entry point is still the logic of `m
 
 If the target host does not support Codex-style skill tokens such as `$memory-check`, remove the `$...` token and keep the prompt body and workflow instructions.
 
+Recommended execution order in non-Codex environments:
+
+1. `memory-check`
+2. `memory-fix`
+3. validation
+4. `memory-review`
+
+The logical main entry point remains `memory-optimizer-agent`, but its portable form is the workflow and configuration rather than a Codex-only installation step.
+
+## Distribution Guidance
+
+If another user downloads this repository:
+
+- they can use the whole repo directly
+- Codex users should follow the installation flow under `packages/memory_hotspot_repair_kernel/`
+- non-Codex users should read `packages/memory_hotspot_repair_kernel/PORTABLE_USAGE.md`
+
+If you want to distribute only the minimal reusable artifact:
+
+- distribute `packages/memory_hotspot_repair_kernel/`
+- optionally include `examples/memory_hotspot_repair_kernel/` only as supplemental reference material
+
+This means users do not need to separately install both a package and an example. The example is optional and is not part of the required installation path.
+
+## Quick Start
+
+### 3-Minute Start for Codex
+
+```bash
+git clone <repo>
+cd alamo_skillhub/packages/memory_hotspot_repair_kernel
+python3 scripts/sync_to_codex_home.py
+```
+
+Then in Codex:
+
+```text
+Use $memory-optimizer-agent to optimize memory hotspots in the current codebase.
+```
+
+If you only want one stage instead of the full loop, call one of:
+
+```text
+Use $memory-check to inspect memory hotspots in the current codebase.
+Use $memory-fix to remediate the highest-priority memory hotspot.
+Use $memory-review to review the memory-related change independently.
+```
+
+### 3-Minute Start for Other Agents
+
+```bash
+git clone <repo>
+cd alamo_skillhub/packages/memory_hotspot_repair_kernel
+```
+
+Then:
+
+1. read `PORTABLE_USAGE.md`
+2. start from `memory-optimizer-agent/references/generic.prompt_bundle.yaml`
+3. execute the workflow in the target host
+
+A practical interpretation is:
+
+1. copy or adapt the generic prompt bundle
+2. run the check stage in your host agent
+3. run the fix stage
+4. run a local validation command
+5. run the review stage
+
 ## Notes on Examples and Overlays
 
 Some files reference `segment_causal_pipeline_v2`. These materials are treated as optional examples.
@@ -134,6 +275,11 @@ This examples tree currently includes:
 - example repo-specific overlays for `memory-check`, `memory-fix`, and `memory-review`
 
 They are not required for installation and do not block use of the portable core skills in other repositories.
+
+They exist for two purposes:
+
+- to show one concrete adaptation of the generic package
+- to provide reusable patterns when you need repo-specific overlays later
 
 ## Documentation
 
