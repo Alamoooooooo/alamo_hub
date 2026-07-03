@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/e/alamowork/causalmlforguangfen/CausalModel_1w-main/CausalModel_1w-main/src/segment_causal_pipeline_v2/recommendation_scoring.py", line 24, in <module>
-    import duckdb
-ModuleNotFoundError: No module named 'duckdb'

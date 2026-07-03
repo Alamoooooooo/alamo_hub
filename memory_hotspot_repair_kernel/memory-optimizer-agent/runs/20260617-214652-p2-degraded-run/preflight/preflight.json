@@ -1,7 +1,0 @@
-{
-  "checked_at": "2026-06-17T21:47:34",
-  "cli_available": true,
-  "auth_ready": false,
-  "auth_error": "Codex step failed with exit code 1. See E:\\alamowork\\causalmlforguangfen\\CausalModel_1w-main\\CausalModel_1w-main\\.codex\\skills-review\\memory-optimizer-agent\\runs\\20260617-214652-p2-degraded-run\\preflight\\auth.stderr.log",
-  "allow_degraded_without_codex": true
-}
