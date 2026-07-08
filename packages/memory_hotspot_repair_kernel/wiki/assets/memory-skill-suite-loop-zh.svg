@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .title { font: 700 38px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 20px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #4b5563; }
+      .section { font: 700 24px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .label { font: 700 22px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #111827; }
+      .body { font: 400 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #374151; }
+      .small { font: 400 16px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #475569; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2.4; rx: 20; ry: 20; }
+      .check { fill: #eef6ff; stroke: #2563eb; stroke-width: 2.6; rx: 20; ry: 20; }
+      .fix { fill: #ecfdf5; stroke: #059669; stroke-width: 2.6; rx: 20; ry: 20; }
+      .validate { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.6; rx: 20; ry: 20; }
+      .review { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2.6; rx: 20; ry: 20; }
+      .decision { fill: #fef3c7; stroke: #d97706; stroke-width: 2.6; rx: 20; ry: 20; }
+      .note { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; rx: 18; ry: 18; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .loop { stroke: #0f766e; stroke-width: 3; fill: none; stroke-dasharray: 10 8; marker-end: url(#arrowhead2); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowhead2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#0f766e"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="#f3f6fb"/>
+
+  <text x="800" y="62" text-anchor="middle" class="title">Skill 组合包的有界闭环运行流程</text>
+  <text x="800" y="96" text-anchor="middle" class="subtitle">主入口不是四个孤立 skill，而是由 memory-optimizer-agent 组织的一条检查、修复、验证、复核闭环</text>
+
+  <rect x="90" y="130" width="1420" height="780" class="box"/>
+  <text x="130" y="172" class="section">一、主入口</text>
+
+  <rect x="180" y="210" width="1240" height="92" class="note"/>
+  <text x="800" y="250" text-anchor="middle" class="label">memory-optimizer-agent</text>
+  <text x="800" y="283" text-anchor="middle" class="body">负责调度 loop、控制轮次、组织验证、决定停止或继续</text>
+
+  <text x="130" y="360" class="section">二、单轮流程</text>
+
+  <rect x="120" y="410" width="240" height="150" class="check"/>
+  <text x="240" y="455" text-anchor="middle" class="label">1. 检查</text>
+  <text x="150" y="495" class="body">运行 memory-check</text>
+  <text x="150" y="528" class="body">识别热点路径</text>
+  <text x="150" y="561" class="body">给出修复优先级</text>
+
+  <rect x="410" y="410" width="240" height="150" class="fix"/>
+  <text x="530" y="455" text-anchor="middle" class="label">2. 修复</text>
+  <text x="440" y="495" class="body">运行 memory-fix</text>
+  <text x="440" y="528" class="body">优先处理最高价值热点</text>
+  <text x="440" y="561" class="body">尽量保持行为契约不变</text>
+
+  <rect x="700" y="410" width="240" height="150" class="validate"/>
+  <text x="820" y="455" text-anchor="middle" class="label">3. 验证</text>
+  <text x="730" y="495" class="body">执行语法检查</text>
+  <text x="730" y="528" class="body">执行 smoke / 有界验证</text>
+  <text x="730" y="561" class="body">区分代码问题与环境问题</text>
+
+  <rect x="990" y="410" width="240" height="150" class="review"/>
+  <text x="1110" y="455" text-anchor="middle" class="label">4. 复核</text>
+  <text x="1020" y="495" class="body">运行 memory-review</text>
+  <text x="1020" y="528" class="body">检查是否真的降峰值</text>
+  <text x="1020" y="561" class="body">检查是否出现次级峰值</text>
+
+  <rect x="1280" y="410" width="190" height="150" class="decision"/>
+  <text x="1375" y="455" text-anchor="middle" class="label">5. 决策</text>
+  <text x="1310" y="495" class="body">停止</text>
+  <text x="1310" y="528" class="body">或继续下一轮</text>
+
+  <path d="M360 485 H395" class="arrow"/>
+  <path d="M650 485 H685" class="arrow"/>
+  <path d="M940 485 H975" class="arrow"/>
+  <path d="M1230 485 H1265" class="arrow"/>
+
+  <path d="M1375 560 V650 H240 V575" class="loop"/>
+  <text x="540" y="675" class="body">若仍存在高价值热点，则回到下一轮检查 / 修复</text>
+
+  <text x="130" y="740" class="section">三、停止条件与轮次边界</text>
+
+  <rect x="160" y="780" width="1280" height="90" class="note"/>
+  <text x="200" y="820" class="body">• 默认最多 2 轮：第一轮完整闭环，第二轮只在仍有高信号问题时继续</text>
+  <text x="200" y="850" class="body">• 只有在用户明确要求更激进优化时，才扩展到 3 轮</text>
+  <text x="900" y="820" class="body">• 若主热点已下降、剩余问题价值不高、或继续修复会改变业务语义，则停止</text>
+  <text x="900" y="850" class="body">• 如果验证失败，应先区分环境问题、依赖问题和代码回归，再决定是否继续</text>
+</svg>

@@ -1,10 +1,10 @@
 workspace_root: ../../../../
 target_paths:
-  - src/segment_causal_pipeline_v2/common.py
-  - src/segment_causal_pipeline_v2/cate.py
-  - src/segment_causal_pipeline_v2/recommendation_scoring.py
-  - src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py
-  - src/segment_causal_pipeline_v2/v2_settings.py
+  - src/pipelines/partitioned_batch_pipeline/common.py
+  - src/pipelines/partitioned_batch_pipeline/batch_prepare.py
+  - src/pipelines/partitioned_batch_pipeline/batch_score.py
+  - src/pipelines/partitioned_batch_pipeline/batch_aggregate.py
+  - src/pipelines/partitioned_batch_pipeline/pipeline_settings.py
 
 execution_backend: codex
 default_profile: default
@@ -28,7 +28,7 @@ preflight_required: true
 allow_degraded_without_codex: true
 
 validation_commands:
-  - name: py_compile_segment_pipeline
+  - name: py_compile_partitioned_batch_pipeline
     shell: bash
     required: true
     timeout_seconds: 60
@@ -36,33 +36,33 @@ validation_commands:
       python3 - <<'PY'
       import py_compile
       files = [
-          "src/segment_causal_pipeline_v2/common.py",
-          "src/segment_causal_pipeline_v2/cate.py",
-          "src/segment_causal_pipeline_v2/recommendation_scoring.py",
-          "src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py",
-          "src/segment_causal_pipeline_v2/v2_settings.py",
+          "src/pipelines/partitioned_batch_pipeline/common.py",
+          "src/pipelines/partitioned_batch_pipeline/batch_prepare.py",
+          "src/pipelines/partitioned_batch_pipeline/batch_score.py",
+          "src/pipelines/partitioned_batch_pipeline/batch_aggregate.py",
+          "src/pipelines/partitioned_batch_pipeline/pipeline_settings.py",
       ]
       for f in files:
           py_compile.compile(f, doraise=True)
           print("OK", f)
       PY
 
-  - name: smoke_segment_level_scoring
+  - name: smoke_partitioned_batch_score
     shell: auto
     required: true
     timeout_seconds: 180
     command: |
-      python src/segment_causal_pipeline_v2/segment_level_recommendation_scoring.py --config src/segment_causal_pipeline_v2/tmp_smoke/segment_level_recommendation_scoring_smoke.yaml
+      python src/pipelines/partitioned_batch_pipeline/batch_score.py --config src/pipelines/partitioned_batch_pipeline/smoke_configs/batch_score_smoke.yaml
 
-  - name: smoke_recommendation_scoring
+  - name: smoke_partitioned_batch_aggregate
     shell: auto
     required: true
     timeout_seconds: 180
     command: |
-      python src/segment_causal_pipeline_v2/recommendation_scoring.py --config src/segment_causal_pipeline_v2/tmp_smoke/recommendation_scoring_smoke.yaml
+      python src/pipelines/partitioned_batch_pipeline/batch_aggregate.py --config src/pipelines/partitioned_batch_pipeline/smoke_configs/batch_aggregate_smoke.yaml
 
 check_prompt_extra: |
-  Focus on the remaining memory hotspots in the segment causal pipeline, especially:
+  Focus on the remaining memory hotspots in the partitioned batch pipeline, especially:
   - residual broad scans
   - list(glob(...)) style path enumeration
   - fake chunking
@@ -70,7 +70,7 @@ check_prompt_extra: |
   Prefer practical, codebase-specific findings over generic advice.
 
 fix_prompt_extra: |
-  Prefer minimal, behavior-preserving fixes in the segment causal pipeline.
+  Prefer minimal, behavior-preserving fixes in the partitioned batch pipeline.
   Do not broaden scope outside the listed files unless a tiny helper change is required.
 
 review_prompt_extra: |

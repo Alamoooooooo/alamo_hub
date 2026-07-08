@@ -41,7 +41,7 @@
   <text x="895" y="305" class="body">• validation hints tied to repo structure and smoke paths</text>
   <text x="895" y="340" class="body">• repo-specific review targets and residual-risk patterns</text>
   <text x="895" y="405" class="label">Current concrete example</text>
-  <text x="895" y="447" class="body">segment-causal-pipeline-v2 overlay</text>
+  <text x="895" y="447" class="body">partitioned-batch-pipeline overlay</text>
   <text x="925" y="482" class="body">• broad parquet scan</text>
   <text x="925" y="517" class="body">• fake chunking</text>
   <text x="925" y="552" class="body">• frame / NumPy / prediction overlap</text>

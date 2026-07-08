@@ -46,14 +46,14 @@ alamo_skillhub/
 │       └── PORTABLE_USAGE.md
 └── examples/
     └── memory_hotspot_repair_kernel/
-        └── segment_causal_pipeline_v2/
+        └── partitioned_batch_pipeline/
             ├── overlays/
             │   ├── memory-check/
             │   ├── memory-fix/
             │   └── memory-review/
-            ├── segment_causal_pipeline_v2.prompt_bundle.yaml
-            ├── segment_causal_pipeline_v2.run.yaml
-            └── segment_causal_pipeline_v2.run.linux.yaml
+            ├── partitioned_batch_pipeline.prompt_bundle.yaml
+            ├── partitioned_batch_pipeline.run.yaml
+            └── partitioned_batch_pipeline.run.linux.yaml
 ```
 
 Use `packages/` for installable skill packages.
@@ -306,11 +306,11 @@ A practical interpretation is:
 
 ## Notes on Examples and Overlays
 
-Some files reference `segment_causal_pipeline_v2`. These materials are treated as optional examples.
+Some files reference `partitioned_batch_pipeline`. These materials are treated as optional examples.
 
 They are stored under:
 
-- `examples/memory_hotspot_repair_kernel/segment_causal_pipeline_v2/`
+- `examples/memory_hotspot_repair_kernel/partitioned_batch_pipeline/`
 
 This examples tree currently includes:
 

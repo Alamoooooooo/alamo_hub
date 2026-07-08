@@ -58,10 +58,10 @@ Use this template when the user wants a formal post-fix review document.
 
 - Input contract:
 - Output schema:
-- Ranking / scoring semantics:
+- Processing / output semantics:
 - Checkpoint / resume:
 - Overwrite behavior:
-- Missing-model / missing-file behavior:
+- Missing-input / missing-artifact behavior:
 - Fallback behavior:
 
 ## Residual Hotspots

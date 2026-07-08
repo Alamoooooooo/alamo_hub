@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 20px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #334155; }
+      .body { font: 400 18px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #334155; }
+      .small { font: 400 15px 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; fill: #475569; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2.2; rx: 24; ry: 24; }
+      .soft { fill: #f8fafc; }
+      .desk { fill: #dbeafe; stroke: #60a5fa; stroke-width: 2.4; }
+      .screen { fill: #0f172a; stroke: #334155; stroke-width: 2.4; rx: 16; ry: 16; }
+      .screenInner { fill: #eff6ff; rx: 10; ry: 10; }
+      .oom { fill: #fee2e2; stroke: #dc2626; stroke-width: 2.4; rx: 18; ry: 18; }
+      .ok { fill: #ecfdf5; stroke: #16a34a; stroke-width: 2.2; rx: 18; ry: 18; }
+      .mask { fill: #ffffff; stroke: #111827; stroke-width: 2.5; }
+      .hair { fill: #111827; }
+      .hoodie { fill: #1d4ed8; }
+      .hand { fill: #fde68a; stroke: #d97706; stroke-width: 1.8; }
+      .line { stroke: #475569; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .chartBad { stroke: #ef4444; stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .chartGood { stroke: #10b981; stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .bubble { fill: #fff7ed; stroke: #f97316; stroke-width: 2.2; rx: 18; ry: 18; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="720" fill="#f1f5f9"/>
+
+  <text x="80" y="72" class="title">那一天，我只是想老老实实做一次投产前测试</text>
+  <text x="80" y="108" class="subtitle">结果几十分钟后，屏幕上弹出的不是成功，而是一条刺眼的 OOM 提醒。</text>
+
+  <rect x="60" y="140" width="1160" height="520" class="panel"/>
+
+  <rect x="110" y="445" width="540" height="70" rx="24" ry="24" class="desk"/>
+  <rect x="700" y="445" width="430" height="70" rx="24" ry="24" class="desk"/>
+
+  <rect x="255" y="220" width="300" height="190" class="screen"/>
+  <rect x="280" y="245" width="250" height="140" class="screenInner"/>
+  <text x="305" y="276" class="small">资源监测</text>
+  <path d="M305 360 L345 350 L385 320 L425 290 L465 270 L505 258" class="chartBad"/>
+  <text x="415" y="305" class="small" fill="#dc2626">内存持续抬升</text>
+  <rect x="340" y="286" width="150" height="50" class="oom"/>
+  <text x="415" y="318" text-anchor="middle" class="body" fill="#991b1b">运行失败：OOM</text>
+
+  <circle cx="170" cy="342" r="52" class="hair"/>
+  <path d="M125 390 Q170 430 215 390 L205 520 L135 520 Z" class="hoodie"/>
+  <ellipse cx="170" cy="346" rx="34" ry="42" class="mask"/>
+  <circle cx="158" cy="340" r="4" fill="#111827"/>
+  <circle cx="182" cy="340" r="4" fill="#111827"/>
+  <path d="M150 360 Q170 352 190 360" class="line"/>
+  <path d="M214 430 Q252 390 275 360" class="line"/>
+  <path d="M268 355 Q285 346 300 352" class="hand"/>
+  <path d="M122 430 Q96 400 90 372" class="line"/>
+  <path d="M82 362 Q68 346 82 334 Q96 322 112 334" class="line"/>
+  <text x="88" y="314" class="small">“怎么又炸了？”</text>
+
+  <rect x="740" y="210" width="340" height="210" class="bubble"/>
+  <text x="770" y="252" class="body">生产环境只给了 50 GB 内存，</text>
+  <text x="770" y="286" class="body">但我手里有一大堆数据要处理。</text>
+  <text x="770" y="338" class="body">我按下“运行”之后，</text>
+  <text x="770" y="372" class="body">过了几十分钟，失败提醒还是来了。</text>
+
+  <rect x="845" y="455" width="250" height="130" class="ok"/>
+  <text x="970" y="492" text-anchor="middle" class="body">真正需要的不是更多临时 patch</text>
+  <text x="970" y="528" text-anchor="middle" class="body">而是一条稳定闭环：</text>
+  <text x="970" y="564" text-anchor="middle" class="body">检查 → 修复 → 验证 → 复核</text>
+
+  <text x="80" y="625" class="subtitle">故事的起点很普通：内存爆了。真正重要的是，后来我把这次救火过程沉淀成了一套可以重复使用的 loop。</text>
+</svg>

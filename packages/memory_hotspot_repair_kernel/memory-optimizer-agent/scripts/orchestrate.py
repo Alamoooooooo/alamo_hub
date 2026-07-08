@@ -476,7 +476,7 @@ def _build_fix_prompt(
     prompt = [
         "Use $memory-fix to apply safe, targeted code changes for the current highest-value memory issue.",
         f"Restrict the main edits to these paths unless a helper change is necessary: {target_text}",
-        "Preserve behavior, output contracts, checkpoint logic, overwrite logic, and missing-model skip behavior unless explicitly required.",
+        "Preserve behavior, output contracts, checkpoint logic, overwrite logic, and missing-input skip behavior unless explicitly required.",
         f"This is fix round {round_index}.",
         "Current check report:",
         json.dumps(check_payload, ensure_ascii=False, indent=2),

@@ -49,8 +49,8 @@ Use this template when the user wants a formal write-up of the remediation work.
 - Input contract preserved:
 - Output schema preserved:
 - Checkpoint / resume preserved:
-- Missing-model / missing-file behavior preserved:
-- Ranking / scoring semantics preserved:
+- Missing-input / missing-artifact behavior preserved:
+- Processing / output semantics preserved:
 
 ## Residual Risk
 

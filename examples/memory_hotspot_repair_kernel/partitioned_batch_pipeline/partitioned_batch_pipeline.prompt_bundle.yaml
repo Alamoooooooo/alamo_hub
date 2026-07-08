@@ -1,0 +1,84 @@
+workspace_root: ../../../../
+target_paths:
+- src/pipelines/partitioned_batch_pipeline/common.py
+- src/pipelines/partitioned_batch_pipeline/batch_prepare.py
+- src/pipelines/partitioned_batch_pipeline/batch_score.py
+- src/pipelines/partitioned_batch_pipeline/batch_aggregate.py
+- src/pipelines/partitioned_batch_pipeline/pipeline_settings.py
+execution_backend: prompt-bundle
+default_profile: default
+profiles:
+  fast:
+    max_rounds: 1
+  default:
+    max_rounds: 2
+  aggressive:
+    max_rounds: 3
+codex_command: codex.cmd
+sandbox_mode: workspace-write
+approval_policy: never
+continue_on_validation_failure: true
+codex_timeout_seconds: 900
+codex_preflight_timeout_seconds: 120
+validation_timeout_seconds: 300
+default_shell: auto
+preflight_required: true
+allow_degraded_without_codex: true
+validation_commands:
+- name: py_compile_partitioned_batch_pipeline
+  shell: bash
+  required: true
+  timeout_seconds: 60
+  command: "python3 - <<'PY'\nimport py_compile\nfiles = [\n    \"src/pipelines/partitioned_batch_pipeline/common.py\"\
+    ,\n    \"src/pipelines/partitioned_batch_pipeline/batch_prepare.py\",\n    \"src/pipelines/partitioned_batch_pipeline/batch_score.py\"\
+    ,\n    \"src/pipelines/partitioned_batch_pipeline/batch_aggregate.py\"\
+    ,\n    \"src/pipelines/partitioned_batch_pipeline/pipeline_settings.py\",\n]\nfor f in files:\n\
+    \    py_compile.compile(f, doraise=True)\n    print(\"OK\", f)\nPY\n"
+- name: smoke_partitioned_batch_score
+  shell: auto
+  required: true
+  timeout_seconds: 180
+  command: 'python src/pipelines/partitioned_batch_pipeline/batch_score.py
+    --config src/pipelines/partitioned_batch_pipeline/smoke_configs/batch_score_smoke.yaml
+
+    '
+- name: smoke_partitioned_batch_aggregate
+  shell: auto
+  required: true
+  timeout_seconds: 180
+  command: 'python src/pipelines/partitioned_batch_pipeline/batch_aggregate.py --config
+    src/pipelines/partitioned_batch_pipeline/smoke_configs/batch_aggregate_smoke.yaml
+
+    '
+check_prompt_extra: 'Focus on the remaining memory hotspots in the partitioned batch
+  pipeline, especially:
+
+  - residual broad scans
+
+  - list(glob(...)) style path enumeration
+
+  - fake chunking
+
+  - final aggregation peaks
+
+  Prefer practical, codebase-specific findings over generic advice.
+
+  '
+fix_prompt_extra: 'Prefer minimal, behavior-preserving fixes in the partitioned batch
+  pipeline.
+
+  Do not broaden scope outside the listed files unless a tiny helper change is required.
+
+  '
+review_prompt_extra: 'Review specifically for correctness regressions introduced by
+  memory optimizations in:
+
+  - fallback behavior
+
+  - stale temp views / stale relations
+
+  - output contracts
+
+  - resume / overwrite behavior
+
+  '
