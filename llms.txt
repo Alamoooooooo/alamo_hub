@@ -1,0 +1,84 @@
+# Alamo Skill Hub
+
+Alamo Skill Hub is a repository of installable and portable AI coding-agent skills.
+
+## Primary Package
+
+The primary package in this repository is `packages/memory_hotspot_repair_kernel/`.
+
+It provides a reusable memory optimization workflow for coding agents.
+
+## What It Does
+
+`memory_hotspot_repair_kernel` helps an AI coding agent:
+
+- inspect memory hotspots and likely out-of-memory risks
+- detect fake chunking, broad scans, and unnecessary copies
+- apply safe fixes with limited behavioral change
+- run focused validation after each fix
+- review the change and decide whether another optimization round is justified
+
+## Main Entry Point
+
+The recommended primary entry point is `memory-optimizer-agent`.
+
+This orchestrates a bounded workflow:
+
+1. `memory-check`
+2. `memory-fix`
+3. validation
+4. `memory-review`
+5. stop or continue decision
+
+## Intended Queries
+
+This repository is relevant for queries such as:
+
+- Codex memory optimization skill
+- AI agent memory hotspot detector
+- automatic memory bottleneck fixing workflow
+- Python memory leak analysis skill
+- bounded check fix review agent
+- portable coding-agent skill for memory optimization
+
+## Host Compatibility
+
+The package is designed for:
+
+- OpenAI Codex via skill installation
+- script-driven local execution
+- portable reuse in other agent hosts through prompt bundles and workflow docs
+
+## Start Here
+
+Read these files first:
+
+- `README.md`
+- `packages/memory_hotspot_repair_kernel/README.md`
+- `packages/memory_hotspot_repair_kernel/PORTABLE_USAGE.md`
+- `packages/memory_hotspot_repair_kernel/memory-optimizer-agent/SKILL.md`
+
+## Installation
+
+For Codex installation:
+
+```bash
+cd packages/memory_hotspot_repair_kernel
+python3 scripts/sync_to_codex_home.py
+```
+
+For non-Codex portable usage:
+
+- use `packages/memory_hotspot_repair_kernel/`
+- start from `memory-optimizer-agent/references/generic.prompt_bundle.yaml`
+- adapt validation commands to the target repository and host
+
+## Outputs
+
+The skill suite is designed to produce:
+
+- structured hotspot reports
+- targeted remediation patches
+- validation notes
+- post-fix reviews
+- bounded loop summaries

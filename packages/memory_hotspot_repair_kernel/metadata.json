@@ -1,0 +1,69 @@
+{
+  "name": "memory_hotspot_repair_kernel",
+  "display_name": "Memory Hotspot Repair Kernel",
+  "summary": "Installable and portable AI coding-agent skill package for detecting memory hotspots, applying safe fixes, and verifying them with a bounded review loop.",
+  "primary_entry_point": "memory-optimizer-agent",
+  "repository_role": "skill-package",
+  "problem_domains": [
+    "memory optimization",
+    "memory hotspot detection",
+    "out-of-memory risk review",
+    "allocation overhead reduction",
+    "bounded agent workflow"
+  ],
+  "keywords": [
+    "codex skill",
+    "ai coding agent",
+    "memory hotspot",
+    "memory leak",
+    "python memory optimization",
+    "pandas",
+    "duckdb",
+    "numpy",
+    "polars",
+    "agent workflow",
+    "check fix review",
+    "portable skill"
+  ],
+  "hosts": {
+    "native": [
+      "OpenAI Codex"
+    ],
+    "portable": [
+      "generic prompt-bundle host",
+      "script-driven local runner"
+    ]
+  },
+  "skills": [
+    {
+      "name": "memory-check",
+      "role": "audit",
+      "path": "memory-check/SKILL.md"
+    },
+    {
+      "name": "memory-fix",
+      "role": "remediation",
+      "path": "memory-fix/SKILL.md"
+    },
+    {
+      "name": "memory-review",
+      "role": "post-fix-review",
+      "path": "memory-review/SKILL.md"
+    },
+    {
+      "name": "memory-optimizer-agent",
+      "role": "orchestrator",
+      "path": "memory-optimizer-agent/SKILL.md"
+    }
+  ],
+  "start_here": [
+    "README.md",
+    "PORTABLE_USAGE.md",
+    "memory-optimizer-agent/SKILL.md",
+    "memory-optimizer-agent/references/generic.prompt_bundle.yaml"
+  ],
+  "installation": {
+    "codex": "python3 scripts/sync_to_codex_home.py",
+    "portable": "Use PORTABLE_USAGE.md and adapt memory-optimizer-agent/references/generic.prompt_bundle.yaml"
+  }
+}

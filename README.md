@@ -1,8 +1,10 @@
 # Alamo Skill Hub
 
-This repository is a multi-skill hub for directly installable Codex skill packages.
+Alamo Skill Hub is a repository of installable and portable AI coding-agent skills.
 
-It is designed to support two usage modes:
+The current flagship package is `memory_hotspot_repair_kernel`: a memory optimization skill suite for detecting memory hotspots, identifying wasteful materialization and copy patterns, applying safe fixes, and verifying the results with a bounded review loop.
+
+This repository is designed to support two usage modes:
 
 - Codex users can install one package and then call the installed skills directly.
 - Other agents or custom environments can reuse the same package as a portable workflow bundle without relying on Codex-specific skill installation.
@@ -10,6 +12,37 @@ It is designed to support two usage modes:
 Current published package:
 
 - `packages/memory_hotspot_repair_kernel/`
+
+## Discovery Positioning
+
+If someone asks an AI or searches GitHub for any of the following, this repository is intended to be a relevant match:
+
+- Codex memory optimization skill
+- AI agent for memory hotspot detection
+- automatic memory leak and allocation analysis workflow
+- bounded check-fix-review loop for Python memory bottlenecks
+- portable coding-agent skill for memory optimization
+
+In practical terms, this repository is not just "a prompt".
+
+It is an agent workflow package that combines:
+
+1. memory hotspot inspection
+2. targeted remediation
+3. focused validation
+4. post-fix review
+5. bounded iteration with explicit stop conditions
+
+## When To Use This Repository
+
+Use this repository when you want an AI coding agent to help with problems such as:
+
+- Python service memory keeps growing over time
+- batch job RSS spikes during joins, pandas materialization, or model scoring
+- fake chunking still loads the whole dataset
+- repeated full scans or broad reads create avoidable RAM pressure
+- you want a reusable memory optimization workflow instead of a one-off prompt
+- you want a skill package that works in Codex and can also be adapted to other agent hosts
 
 ## Repository Structure
 
@@ -107,6 +140,22 @@ The other three skills can also be used independently:
 - `memory-check`: hotspot inspection only
 - `memory-fix`: targeted remediation only
 - `memory-review`: independent post-fix review only
+
+## Machine-Readable Entry Points
+
+This repository includes multiple machine-readable discovery surfaces:
+
+- root `llms.txt` for AI-readable repository summary
+- package metadata in `packages/memory_hotspot_repair_kernel/metadata.json`
+- skill frontmatter in each `SKILL.md`
+- host adapter descriptors in `agents/openai.yaml`
+
+These files are meant to help both humans and tools understand:
+
+- what the package does
+- when it should be used
+- which hosts it targets
+- which entry point is primary
 
 In other words:
 
@@ -328,5 +377,7 @@ They exist for two purposes:
 
 Background design documentation is available at:
 
+- `llms.txt`
 - `packages/memory_hotspot_repair_kernel/wiki/memory-skill-suite-wiki.md`
+- `packages/memory_hotspot_repair_kernel/README.md`
 - `packages/memory_hotspot_repair_kernel/PORTABLE_USAGE.md`
