@@ -2,11 +2,12 @@
 
 Alamo Skill Hub is a repository of installable and portable AI coding-agent skills.
 
-## Primary Package
+## Primary Packages
 
-The primary package in this repository is `packages/memory_hotspot_repair_kernel/`.
+The primary packages in this repository are:
 
-It provides a reusable memory optimization workflow for coding agents.
+- `packages/memory_hotspot_repair_kernel/`
+- `packages/github_sync_workflow_kernel/`
 
 ## What It Does
 
@@ -18,17 +19,36 @@ It provides a reusable memory optimization workflow for coding agents.
 - run focused validation after each fix
 - review the change and decide whether another optimization round is justified
 
+`github_sync_workflow_kernel` helps an AI coding agent:
+
+- identify the real repository in a multi-repo workspace
+- inspect GitHub SSH or HTTPS readiness
+- review branch, remotes, and worktree state
+- classify intended changes vs noise before a commit
+- push the selected remote and verify final synchronization state
+
 ## Main Entry Point
 
-The recommended primary entry point is `memory-optimizer-agent`.
+The recommended primary entry points are:
 
-This orchestrates a bounded workflow:
+- `memory-optimizer-agent`
+- `github-sync-agent`
+
+`memory-optimizer-agent` orchestrates a bounded workflow:
 
 1. `memory-check`
 2. `memory-fix`
 3. validation
 4. `memory-review`
 5. stop or continue decision
+
+`github-sync-agent` orchestrates:
+
+1. repository discovery
+2. auth and remote inspection
+3. commit-scope review
+4. commit and push
+5. final verification
 
 ## Intended Queries
 
@@ -40,6 +60,9 @@ This repository is relevant for queries such as:
 - Python memory leak analysis skill
 - bounded check fix review agent
 - portable coding-agent skill for memory optimization
+- git push workflow skill
+- github sync agent
+- WSL GitHub SSH setup workflow
 
 ## Host Compatibility
 
@@ -57,6 +80,9 @@ Read these files first:
 - `packages/memory_hotspot_repair_kernel/README.md`
 - `packages/memory_hotspot_repair_kernel/PORTABLE_USAGE.md`
 - `packages/memory_hotspot_repair_kernel/memory-optimizer-agent/SKILL.md`
+- `packages/github_sync_workflow_kernel/README.md`
+- `packages/github_sync_workflow_kernel/PORTABLE_USAGE.md`
+- `packages/github_sync_workflow_kernel/github-sync-agent/SKILL.md`
 
 ## Installation
 
@@ -64,6 +90,13 @@ For Codex installation:
 
 ```bash
 cd packages/memory_hotspot_repair_kernel
+python3 scripts/sync_to_codex_home.py
+```
+
+For GitHub sync workflow installation:
+
+```bash
+cd packages/github_sync_workflow_kernel
 python3 scripts/sync_to_codex_home.py
 ```
 
@@ -82,3 +115,11 @@ The skill suite is designed to produce:
 - validation notes
 - post-fix reviews
 - bounded loop summaries
+
+The GitHub sync workflow is designed to produce:
+
+- target repository and remote summaries
+- auth readiness summaries
+- commit-scope decisions
+- push results
+- residual-state verification notes

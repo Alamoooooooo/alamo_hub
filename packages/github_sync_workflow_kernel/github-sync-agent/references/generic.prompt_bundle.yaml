@@ -1,0 +1,18 @@
+bundle_name: github_sync_agent_generic
+entry_point: github-sync-agent
+stages:
+  - name: discover
+    goal: Identify the real repository root and current branch before any mutating Git command.
+  - name: inspect
+    goal: Inspect remotes, tracking state, auth path, and local worktree status.
+  - name: classify
+    goal: Separate intended changes from whitespace noise, generated outputs, and unrelated artifacts.
+  - name: commit
+    goal: Stage the intended scope and create the commit only when needed.
+  - name: push
+    goal: Push the selected remote explicitly and report which remote branch moved.
+  - name: verify
+    goal: Re-check tracking and remaining worktree state after the push.
+notes:
+  - Replace host-specific execution details with the target environment's command runner.
+  - Preserve the workflow order even if the host does not support skill tokens.

@@ -1,0 +1,51 @@
+{
+  "name": "github_sync_workflow_kernel",
+  "display_name": "GitHub Sync Workflow Kernel",
+  "summary": "Installable and portable AI coding-agent skill package for end-to-end GitHub sync workflows: auth setup, repo discovery, commit-scope review, push, and verification.",
+  "primary_entry_point": "github-sync-agent",
+  "repository_role": "skill-package",
+  "problem_domains": [
+    "git workflow",
+    "github synchronization",
+    "repository discovery",
+    "commit scope review",
+    "wsl ssh setup"
+  ],
+  "keywords": [
+    "git",
+    "github",
+    "ssh",
+    "wsl",
+    "git push",
+    "git commit",
+    "multi-repo workspace",
+    "coding agent",
+    "portable skill"
+  ],
+  "hosts": {
+    "native": [
+      "OpenAI Codex"
+    ],
+    "portable": [
+      "generic prompt-bundle host",
+      "script-driven local runner"
+    ]
+  },
+  "skills": [
+    {
+      "name": "github-sync-agent",
+      "role": "orchestrator",
+      "path": "github-sync-agent/SKILL.md"
+    }
+  ],
+  "start_here": [
+    "README.md",
+    "PORTABLE_USAGE.md",
+    "github-sync-agent/SKILL.md",
+    "github-sync-agent/references/generic.prompt_bundle.yaml"
+  ],
+  "installation": {
+    "codex": "python3 scripts/sync_to_codex_home.py",
+    "portable": "Use PORTABLE_USAGE.md and adapt github-sync-agent/references/generic.prompt_bundle.yaml"
+  }
+}

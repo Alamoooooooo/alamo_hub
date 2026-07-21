@@ -4,14 +4,17 @@ Alamo Skill Hub is a repository of installable and portable AI coding-agent skil
 
 The current flagship package is `memory_hotspot_repair_kernel`: a memory optimization skill suite for detecting memory hotspots, identifying wasteful materialization and copy patterns, applying safe fixes, and verifying the results with a bounded review loop.
 
+This repository also includes `github_sync_workflow_kernel`: a reusable Git / GitHub synchronization workflow package for repository discovery, auth inspection, commit-scope review, push, and verification.
+
 This repository is designed to support two usage modes:
 
 - Codex users can install one package and then call the installed skills directly.
 - Other agents or custom environments can reuse the same package as a portable workflow bundle without relying on Codex-specific skill installation.
 
-Current published package:
+Current published packages:
 
 - `packages/memory_hotspot_repair_kernel/`
+- `packages/github_sync_workflow_kernel/`
 
 ## Discovery Positioning
 
@@ -54,28 +57,20 @@ alamo_skillhub/
 ├── .gitignore
 ├── LICENSE
 ├── packages/
-│   └── memory_hotspot_repair_kernel/
-│       ├── memory-check/
-│       │   ├── SKILL.md
-│       │   ├── agents/
-│       │   └── references/
-│       ├── memory-fix/
-│       │   ├── SKILL.md
-│       │   ├── agents/
-│       │   └── references/
-│       ├── memory-review/
-│       │   ├── SKILL.md
-│       │   ├── agents/
-│       │   └── references/
-│       ├── memory-optimizer-agent/
-│       │   ├── SKILL.md
-│       │   ├── agents/
-│       │   ├── assets/
-│       │   ├── references/
-│       │   └── scripts/
-│       ├── references/
+│   ├── memory_hotspot_repair_kernel/
+│   │   ├── memory-check/
+│   │   ├── memory-fix/
+│   │   ├── memory-review/
+│   │   ├── memory-optimizer-agent/
+│   │   ├── references/
+│   │   ├── scripts/
+│   │   ├── wiki/
+│   │   └── PORTABLE_USAGE.md
+│   └── github_sync_workflow_kernel/
+│       ├── github-sync-agent/
 │       ├── scripts/
-│       ├── wiki/
+│       ├── metadata.json
+│       ├── README.md
 │       └── PORTABLE_USAGE.md
 └── examples/
     └── memory_hotspot_repair_kernel/
@@ -110,9 +105,10 @@ If you are sharing this repository with others, the important rule is:
 
 ## Package
 
-The installable package currently included is:
+The installable packages currently included are:
 
 - `packages/memory_hotspot_repair_kernel/`
+- `packages/github_sync_workflow_kernel/`
 
 This package contains four coordinated skills:
 
@@ -120,6 +116,10 @@ This package contains four coordinated skills:
 - `memory-fix`
 - `memory-review`
 - `memory-optimizer-agent`
+
+The GitHub sync package contains one coordinated entry point:
+
+- `github-sync-agent`
 
 ## Recommended Entry Point
 
@@ -140,6 +140,18 @@ The other three skills can also be used independently:
 - `memory-check`: hotspot inspection only
 - `memory-fix`: targeted remediation only
 - `memory-review`: independent post-fix review only
+
+For repository synchronization work, the recommended primary entry point is:
+
+- `github-sync-agent`
+
+Use it when you want one reusable workflow that can:
+
+1. find the real target repository
+2. inspect remotes and auth setup
+3. review commit scope
+4. create the intended commit
+5. push and verify final state
 
 ## Machine-Readable Entry Points
 

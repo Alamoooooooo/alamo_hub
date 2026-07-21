@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Sync Agent"
+  short_description: "Handle GitHub setup, repo discovery, commit-scope review, push, and verification."
+  default_prompt: "Use $github-sync-agent to identify the real repository, inspect branch/remotes/auth, classify changes, prepare the right commit scope, push the selected remote, and verify the final state."
