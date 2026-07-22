@@ -1,0 +1,126 @@
+<svg width="1280" height="880" viewBox="0 0 1280 880" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1140" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#E7F0E8"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#F7F4EC"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1280" height="880" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#2B3A2F" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title { font: 700 34px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #213127; }
+      .subtitle { font: 500 18px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #4D5C52; }
+      .panel-title { font: 700 22px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #203126; }
+      .label { font: 600 18px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #203126; }
+      .small { font: 500 15px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #536257; }
+      .tiny { font: 500 13px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #66766A; }
+      .em { font: 700 15px "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #7D3E1E; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="880" rx="32" fill="url(#bg)"/>
+
+  <text x="80" y="78" class="title">图 0. 多仓库工作区里的 GitHub 同步，真正难的不是命令，而是先路由再判断</text>
+  <text x="80" y="112" class="subtitle">左侧是脱敏后的真实工作区结构，右侧是每次同步前必须重新建立的上下文。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="150" width="560" height="650" rx="28" fill="url(#panel)"/>
+  </g>
+  <text x="100" y="195" class="panel-title">A. 工作区结构：当前 shell 所在位置，未必是真正的 repo</text>
+  <text x="100" y="225" class="tiny">背景：根目录更像导航层，真正的仓库可能是顶层目录，也可能嵌套在下一层。</text>
+
+  <rect x="108" y="260" width="210" height="56" rx="16" fill="#E7EFE3" stroke="#98B094"/>
+  <text x="130" y="294" class="label">workspace-root/</text>
+  <text x="325" y="294" class="tiny">导航层，不应默认 git push</text>
+
+  <line x1="170" y1="316" x2="170" y2="742" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+
+  <g>
+    <line x1="170" y1="364" x2="222" y2="364" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="222" y="336" width="148" height="56" rx="14" fill="#FAF5E7" stroke="#D8C79A"/>
+    <text x="244" y="370" class="label">LLM_WIKI/</text>
+    <text x="382" y="370" class="tiny">先路由、渐进式披露</text>
+  </g>
+
+  <g>
+    <line x1="170" y1="436" x2="222" y2="436" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="222" y="408" width="148" height="56" rx="14" fill="#F4F1FB" stroke="#B8ABD9"/>
+    <text x="244" y="442" class="label">skill-hub/</text>
+    <text x="382" y="442" class="tiny">顶层 repo，可直接同步</text>
+  </g>
+
+  <g>
+    <line x1="170" y1="508" x2="222" y2="508" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="222" y="480" width="170" height="56" rx="14" fill="#EEF6FA" stroke="#9DBDCC"/>
+    <text x="244" y="514" class="label">scoring-repo/</text>
+    <text x="404" y="514" class="tiny">顶层 repo，可直接同步</text>
+  </g>
+
+  <g>
+    <line x1="170" y1="580" x2="222" y2="580" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="222" y="552" width="186" height="56" rx="14" fill="#F9EFEA" stroke="#D7B09C"/>
+    <text x="244" y="586" class="label">competition-repo/</text>
+    <text x="420" y="586" class="tiny">容器目录，不一定是 repo root</text>
+  </g>
+
+  <g>
+    <line x1="170" y1="652" x2="222" y2="652" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="222" y="624" width="148" height="56" rx="14" fill="#F9EFEA" stroke="#D7B09C"/>
+    <text x="244" y="658" class="label">causal-repo/</text>
+    <text x="382" y="658" class="tiny">容器目录，真正 repo 在下一层</text>
+  </g>
+
+  <g>
+    <line x1="170" y1="724" x2="222" y2="724" stroke="#B7C5B9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="222" y="696" width="160" height="56" rx="14" fill="#F1F3F3" stroke="#B8C0C0"/>
+    <text x="244" y="730" class="label">archive-notes/</text>
+    <text x="394" y="730" class="tiny">资料归档，不是默认代码入口</text>
+  </g>
+
+  <rect x="412" y="610" width="170" height="52" rx="12" fill="#FFF7F3" stroke="#C98661" stroke-dasharray="8 6"/>
+  <text x="432" y="642" class="em">真正的 repo 可能还在里面</text>
+  <line x1="392" y1="650" x2="412" y2="636" stroke="#C98661" stroke-width="3" stroke-linecap="round"/>
+  <line x1="408" y1="652" x2="452" y2="682" stroke="#C98661" stroke-width="3" stroke-linecap="round"/>
+
+  <g filter="url(#shadow)">
+    <rect x="668" y="150" width="542" height="650" rx="28" fill="url(#panel)"/>
+  </g>
+  <text x="700" y="195" class="panel-title">B. 真正的同步难点：不是 push，而是每次都要重建上下文</text>
+  <text x="700" y="225" class="tiny">如果没有路由层和工作流层，最后一公里会不断重复这些判断。</text>
+
+  <g>
+    <rect x="710" y="262" width="460" height="64" rx="18" fill="#FFF7EE" stroke="#D7B89D"/>
+    <text x="736" y="300" class="label">1. 我现在站的到底是不是目标 repo？</text>
+  </g>
+  <g>
+    <rect x="710" y="342" width="460" height="64" rx="18" fill="#F4F7FE" stroke="#B3C1E3"/>
+    <text x="736" y="380" class="label">2. 该走 HTTPS，还是显式走 SSH remote？</text>
+  </g>
+  <g>
+    <rect x="710" y="422" width="460" height="64" rx="18" fill="#EEF7F1" stroke="#A8C8AF"/>
+    <text x="736" y="460" class="label">3. 当前是“只推已有提交”，还是要先做新 commit？</text>
+  </g>
+  <g>
+    <rect x="710" y="502" width="460" height="64" rx="18" fill="#FFF3F4" stroke="#D9A8AE"/>
+    <text x="736" y="540" class="label">4. 哪些是真改动，哪些是换行符噪音或生成副本？</text>
+  </g>
+  <g>
+    <rect x="710" y="582" width="460" height="64" rx="18" fill="#F5F1FB" stroke="#BEAFDB"/>
+    <text x="736" y="620" class="label">5. 推完一个 remote 后，另一个是不是其实还落后？</text>
+  </g>
+
+  <rect x="724" y="688" width="430" height="78" rx="20" fill="#E8F1E6" stroke="#8DAA86" stroke-width="2"/>
+  <text x="748" y="723" class="label">结论：GitHub 同步不是一个单点命令，</text>
+  <text x="748" y="752" class="label">而是一条“先路由，再判断，再提交，再验证”的工程流程。</text>
+
+  <path d="M598 472C640 472 648 472 684 472" stroke="#7D8F80" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 8"/>
+  <polygon points="682,460 708,472 682,484" fill="#7D8F80"/>
+
+  <rect x="504" y="438" width="160" height="70" rx="18" fill="#213127"/>
+  <text x="527" y="468" style="font:700 18px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#F7F6F1;">github-sync-agent</text>
+  <text x="527" y="493" style="font:500 13px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#D9E4DA;">把“找仓库 + 同步判断”收口成 workflow</text>
+</svg>
