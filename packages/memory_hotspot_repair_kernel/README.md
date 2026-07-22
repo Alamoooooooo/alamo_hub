@@ -42,6 +42,7 @@ Use this package when you want:
 - For Codex: read `../README.md`, then run `python3 scripts/sync_to_codex_home.py`
 - For other hosts: read `PORTABLE_USAGE.md`
 - For the orchestration contract: read `memory-optimizer-agent/SKILL.md`
+- For the long-form background and sharing article: read [Memory Skill Suite Wiki](wiki/memory-skill-suite-wiki.md)
 
 ## Metadata
 

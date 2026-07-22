@@ -13,8 +13,10 @@ This repository is designed to support two usage modes:
 
 Current published packages:
 
-- `packages/memory_hotspot_repair_kernel/`
-- `packages/github_sync_workflow_kernel/`
+- [`packages/memory_hotspot_repair_kernel/`](packages/memory_hotspot_repair_kernel/)
+- [Memory Skill Suite Wiki](packages/memory_hotspot_repair_kernel/wiki/memory-skill-suite-wiki.md)
+- [`packages/github_sync_workflow_kernel/`](packages/github_sync_workflow_kernel/)
+- [GitHub Sync Workflow Wiki](packages/github_sync_workflow_kernel/wiki/github-sync-workflow-wiki.md)
 
 ## Discovery Positioning
 
@@ -120,6 +122,11 @@ This package contains four coordinated skills:
 The GitHub sync package contains one coordinated entry point:
 
 - `github-sync-agent`
+
+If you want the long-form background, design rationale, or sharing-style writeups, jump to:
+
+- [Memory Skill Suite Wiki](packages/memory_hotspot_repair_kernel/wiki/memory-skill-suite-wiki.md)
+- [GitHub Sync Workflow Wiki](packages/github_sync_workflow_kernel/wiki/github-sync-workflow-wiki.md)
 
 ## Recommended Entry Point
 
